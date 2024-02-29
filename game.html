@@ -10,9 +10,10 @@
 <script>
     let validMove = ["rock", "paper", "scissors"];
     let getComputerChoice = validMove[Math.floor(Math.random() * validMove.length)]; 
-    const computerSelection = getComputerChoice;
+    let computerSelection = getComputerChoice;
+    let playerSelection = getPlayerSelection;
 
-    let playerSelection = function(){
+    function getPlayerSelection(){
     playerSelection = prompt("Select your weapon!");
     playerSelection = playerSelection.toLowerCase();
         while (playerSelection != validMove.includes(playerSelection)){
@@ -22,16 +23,15 @@
         return playerSelection;
     }
 
-    playerSelection();
-    console.log(playerSelection);
-
 
     function playRound (playerSelection, computerSelection) {
-
+        getPlayerSelection();
         if (playerSelection == computerSelection) {
-            return 
+            alert("It's a tie");
         }
     }
+
+    console.log(playRound("rock", "rock"))
 
 
 </script>
