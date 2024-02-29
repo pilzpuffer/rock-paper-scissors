@@ -8,9 +8,21 @@
 <body>
     
 <script>
-let validMove = ["rock", "paper", "scissors"];
-let getComputerChoice = validMove[Math.floor(Math.random() * validMove.length)];
-console.log(getComputerChoice);
+    let validMove = ["rock", "paper", "scissors"];
+    let getComputerChoice = validMove[Math.floor(Math.random() * validMove.length)]; 
+    const computerSelection = getComputerChoice;
+
+    let playerSelection = prompt("Select your weapon!");
+    playerSelection = playerSelection.toLowerCase();
+    console.log(playerSelection);
+
+    function playRound (playerSelection, computerSelection) {
+
+        if (playerSelection == computerSelection) {
+            return 
+        }
+    }
+
 
 </script>
 
