@@ -12,9 +12,19 @@
     let getComputerChoice = validMove[Math.floor(Math.random() * validMove.length)]; 
     const computerSelection = getComputerChoice;
 
-    let playerSelection = prompt("Select your weapon!");
+    let playerSelection = function(){
+    playerSelection = prompt("Select your weapon!");
     playerSelection = playerSelection.toLowerCase();
+        while (playerSelection != validMove.includes(playerSelection)){
+            playerSelection = prompt(`Sorry, we don't have any ${playerSelection}s left. Pick something more standard for this game`);
+            break;
+        }
+        return playerSelection;
+    }
+
+    playerSelection();
     console.log(playerSelection);
+
 
     function playRound (playerSelection, computerSelection) {
 
