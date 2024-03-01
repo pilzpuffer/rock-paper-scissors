@@ -8,6 +8,9 @@
 <body>
     
 <script>
+    let tieCount = 0;
+    let playerWon = 0;
+    let playerLost = 0;
 
     let validMove = ["rock", "paper", "scissors"];
 
@@ -18,22 +21,19 @@
 
     function getPlayerSelection() {
         let getPlayerSelection;
-        if (getPlayerSelection === null) {
-            return;
-        }
+            if (getPlayerSelection === null) {
+                return;
+            }
 
         getPlayerSelection = prompt("Select your weapon!").toLowerCase();
     
+            //check for validity of user's choice
+            while (!(validMove.includes(getPlayerSelection))) {
+                getPlayerSelection = prompt(`Ah, a surprising turn! You've chosen ${getPlayerSelection}, an unconventional option in our rock-paper-scissors arena. We honor tradition here with the classics. Kindly select a standard choice to continue the battle!`);
+            };
 
-        while (!(validMove.includes(getPlayerSelection))) {
-            getPlayerSelection = prompt(`Ah, a surprising turn! You've chosen ${getPlayerSelection}, an unconventional option in our rock-paper-scissors arena. We honor tradition here with the classics. Kindly select a standard choice to continue the battle!`);
-        };
         return getPlayerSelection;
     }
-
-        let tieCount = 0;
-        let playerWon = 0;
-        let playerLost = 0;
 
     function playRound (playerSelection, computerSelection) {
 
@@ -78,7 +78,7 @@
             alert("After an intense battle spanning five rounds, victory eludes your grasp as The Computer emerges triumphant. Though defeat may sting, let it not extinguish the fire within you! Rise from this setback with renewed determination, for the journey to greatness is fraught with challenges. The next battle awaits, and with it, the chance for redemption!");
         } else if (playerWon === playerLost && tieCount === 1) {
             alert("In a thrilling conclusion to the battle, the game ends in a tie, with both you and The Computer showcasing remarkable skill and resilience. While neither emerges as the definitive victor, let this outcome serve as a testament to the closely matched contest between you. With each round fiercely contested, the balance of power teetered on a knife's edge. As the dust settles, take pride in your performance and let this experience fortify your determination for future clashes. For in the world of rock-paper-scissors, every tie is a reminder of the endless possibilities that await in the quest for victory!");
-        } else if (tieCount === 5) {
+        } else if (tieCount === 4) {
             alert("In an astonishing twist of fate, each round of the battle ends in a deadlock, leaving both you and The Computer in a rare standstill. Despite the absence of a clear victor, let this remarkable display of equilibrium inspire your resolve for future encounters. For in the realm of rock-paper-scissors, every tie serves as a testament to the enduring balance of skill and strategy. Harness this equilibrium as you march forward, ready to seize victory in the battles yet to come!");
         }
     }
