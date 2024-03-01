@@ -71,6 +71,16 @@
             let playerSelection = getPlayerSelection();
             playRound(playerSelection, computerSelection);
         }
+
+        if (playerWon > playerLost) {
+            alert("After a grueling five-round showdown, you emerge victorious over The Computer! With unwavering determination and strategic prowess, you've proven yourself as the ultimate champion of rock-paper-scissors. Let the sweet taste of victory fuel your ambition as you stand triumphant against all odds!");
+        } else if (playerWon < playerLost) {
+            alert("After an intense battle spanning five rounds, victory eludes your grasp as The Computer emerges triumphant. Though defeat may sting, let it not extinguish the fire within you! Rise from this setback with renewed determination, for the journey to greatness is fraught with challenges. The next battle awaits, and with it, the chance for redemption!");
+        } else if (playerWon === playerLost && tieCount === 1) {
+            alert("In a thrilling conclusion to the battle, the game ends in a tie, with both you and The Computer showcasing remarkable skill and resilience. While neither emerges as the definitive victor, let this outcome serve as a testament to the closely matched contest between you. With each round fiercely contested, the balance of power teetered on a knife's edge. As the dust settles, take pride in your performance and let this experience fortify your determination for future clashes. For in the world of rock-paper-scissors, every tie is a reminder of the endless possibilities that await in the quest for victory!");
+        } else if (tieCount === 5) {
+            alert("In an astonishing twist of fate, each round of the battle ends in a deadlock, leaving both you and The Computer in a rare standstill. Despite the absence of a clear victor, let this remarkable display of equilibrium inspire your resolve for future encounters. For in the realm of rock-paper-scissors, every tie serves as a testament to the enduring balance of skill and strategy. Harness this equilibrium as you march forward, ready to seize victory in the battles yet to come!");
+        }
     }
 
     playGame();
