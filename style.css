@@ -1,0 +1,23 @@
+.rock {
+    background-image: url("./rock.webp");
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    width: 150px;
+}
+
+.paper {
+    background-image: url("./paper.webp");
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    width: 150px;
+}
+
+.scissors {
+    background-image: url("./scissors.webp");
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    width: 150px;
+}
