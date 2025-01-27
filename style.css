@@ -30,13 +30,30 @@ body {
 .rightside-block {
     width: 20%;
     height: 100%;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.leftside-block {
+    background-image: url(./side-blocks/knight-left.webp);
+}
+
+.rightside-block {
+    background-image: url(./side-blocks/knight-right.webp);
 }
 
 .buttons {
     display: flex;
+    padding-top: 5%;
     justify-content: space-around;
     background-color: black;
     gap: 40px;
+}
+
+button {
+    outline: none;
+    border: none;
 }
 
 .rock {
