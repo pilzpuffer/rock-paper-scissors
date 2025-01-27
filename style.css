@@ -29,14 +29,14 @@ body {
     min-height: 750px;
 }
 
-.header {
+.title {
     display: flex;
     position: sticky;
     top: 0;
     width: 100%;
     height: fit-content;
     justify-content: center;
-    font-size: 65px;
+    font-size: 3.2vw;
 }
 
 .main-block {
@@ -44,7 +44,8 @@ body {
     flex-direction: column;
     width: 60%;
     height: 100%;
-    background-color: aquamarine;
+    background-color: rgb(253, 255, 254); 
+
 }
 
 .leftside-block,
@@ -55,6 +56,7 @@ body {
     background-origin: border-box;
     background-repeat: no-repeat;
     background-position: center;
+    flex-shrink: 1.5;
 }
 
 .leftside-block {
@@ -76,28 +78,22 @@ body {
 button {
     outline: none;
     border: none;
+    height: 200px;
+    width: 150px;
+    background-size: cover;
+    background-position: center;
 }
 
 .rock {
     background-image: url("./icons/rock.webp");
-    background-size: cover;
-    background-position: center;
-    height: 150px;
-    width: 150px;
+    
 }
 
 .paper {
     background-image: url("./icons/paper.webp");
-    background-size: cover;
-    background-position: center;
-    height: 150px;
-    width: 150px;
 }
 
 .scissors {
     background-image: url("./icons/scissors.webp");
-    background-size: cover;
-    background-position: center;
-    height: 150px;
-    width: 150px;
+    
 }
