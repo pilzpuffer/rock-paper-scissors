@@ -86,16 +86,16 @@ button {
     background-position: center;
 }
 
-.rock {
+#rock {
     background-image: url("./icons/rock.webp");
     
 }
 
-.paper {
+#paper {
     background-image: url("./icons/paper.webp");
 }
 
-.scissors {
+#scissors {
     background-image: url("./icons/scissors.webp");
     
 }

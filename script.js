@@ -1,12 +1,19 @@
 const chosenMove = document.querySelectorAll(".moveSelector");
+const textBlock = document.querySelector(".text-block")
 
 chosenMove.forEach((button) => {
-    button.addEventListener("mouseover", (event) => {
-        event.target.classList.add("chosen");
-    });
-    button.addEventListener("mouseout", (event) => {
-        event.target.classList.remove("chosen");
-    });
+    const textSelector = document.createElement("div");
+
+        button.addEventListener("mouseover", (event) => {
+            event.target.classList.add("chosen");
+            textSelector.textContent = `You select ${button.id.toUpperCase()} as your weapon`;
+            textBlock.appendChild(textSelector);
+        });
+        
+        button.addEventListener("mouseout", (event) => {
+            event.target.classList.remove("chosen");
+            textSelector.remove();
+        });
 });
 
 
