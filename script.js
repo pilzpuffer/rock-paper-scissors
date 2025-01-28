@@ -5,12 +5,22 @@ chosenMove.forEach((button) => {
     const textSelector = document.createElement("div");
 
         button.addEventListener("mouseover", (event) => {
+            const blinkSpeed = 850;
+            const blinkEffect = (element) => {
+                element.classList.toggle("blink");
+            }
+            
             event.target.classList.add("chosen");
             textSelector.textContent = `You select ${button.id.toUpperCase()} as your weapon`;
+            textSelector.classList.add("select");
+            
+            blinkInterval = setInterval(() => blinkEffect(textSelector), blinkSpeed);
+
             textBlock.appendChild(textSelector);
         });
         
         button.addEventListener("mouseout", (event) => {
+            clearInterval(blinkInterval);
             event.target.classList.remove("chosen");
             textSelector.remove();
         });

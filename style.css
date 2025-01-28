@@ -67,6 +67,11 @@ body {
     background-image: url(./side-blocks/knight-right.webp);
 }
 
+.text-block {
+    display: flex;
+    justify-content: center;
+}
+
 .buttons {
     display: flex;
     padding-top: 5%;
@@ -104,4 +109,12 @@ button {
     scale: 1.1;
     border: 5px solid rgb(145, 146, 143);
     border-radius: 3%;
+}
+
+.select {
+    font-size: 2vw; 
+}
+
+.blink {
+    visibility: hidden;
 }
