@@ -70,14 +70,16 @@ body {
 .buttons {
     display: flex;
     padding-top: 5%;
-    justify-content: space-around;
-    background-color: black;
+    justify-content: center;
+    padding: 2% 5%;
+    background-color: rgb(253, 255, 254);
     gap: 40px;
 }
 
 button {
     outline: none;
     border: none;
+    border-radius: 1%;
     height: 200px;
     width: 150px;
     background-size: cover;
@@ -96,4 +98,10 @@ button {
 .scissors {
     background-image: url("./icons/scissors.webp");
     
+}
+
+.moveSelector:hover {
+    scale: 1.1;
+    border: 5px solid rgb(145, 146, 143);
+    border-radius: 3%;
 }

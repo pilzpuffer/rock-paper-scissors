@@ -2,12 +2,11 @@ let tieCount = 0;
 let playerWon = 0;
 let playerLost = 0;
 
-let validMove = ["rock", "paper", "scissors"];
+const validMove = ["rock", "paper", "scissors"];
 
 function getComputerSelection () {
     return validMove[Math.floor(Math.random() * validMove.length)];
 }
-
 
 function getPlayerSelection() {
     let getPlayerSelection;
