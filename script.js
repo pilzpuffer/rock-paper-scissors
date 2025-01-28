@@ -1,3 +1,15 @@
+const chosenMove = document.querySelectorAll(".moveSelector");
+
+chosenMove.forEach((button) => {
+    button.addEventListener("mouseover", (event) => {
+        event.target.classList.add("chosen");
+    });
+    button.addEventListener("mouseout", (event) => {
+        event.target.classList.remove("chosen");
+    });
+});
+
+
 let tieCount = 0;
 let playerWon = 0;
 let playerLost = 0;
