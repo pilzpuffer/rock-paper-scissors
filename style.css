@@ -38,6 +38,7 @@ body {
     height: fit-content;
     justify-content: center;
     font-size: 3.2vw;
+    padding-bottom: 1%;
 }
 
 .main-block {
@@ -51,21 +52,31 @@ body {
 
 .leftside-block,
 .rightside-block {
+    position: relative;
     width: 20%;
     height: 100%;
     min-width: 200px;
     background-size: cover;
+    background-position: center;
     background-origin: border-box;
     background-repeat: no-repeat;
     flex-shrink: 1.5;
 }
 
 .leftside-block {
-    background-image: url(./side-blocks/field-left.webp);
+    background-image: url(./side-blocks/field-left.png);
 }
 
 .rightside-block {
-    background-image: url(./side-blocks/field-right.webp);
+    background-image: url(./side-blocks/field-right.png);
+}
+
+.knight-right,
+.knight-left {
+    position: absolute;
+    object-fit: contain;
+    max-width: 100%;
+    height: auto;
 }
 
 .text-block {
