@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Medieval-Pixel";
-    src: url("./Jacquard_12/Jacquard12-Regular.ttf") format("truetype");
+    src: url("./font/Jacquard12-Regular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
@@ -52,6 +52,8 @@ body {
 
 .leftside-block,
 .rightside-block {
+    display: flex;
+    align-items: center;
     position: relative;
     width: 20%;
     height: 100%;
@@ -60,7 +62,7 @@ body {
     background-position: center;
     background-origin: border-box;
     background-repeat: no-repeat;
-    flex-shrink: 1.5;
+    flex-shrink: 2;
 }
 
 .leftside-block {
@@ -75,6 +77,7 @@ body {
 .knight-left {
     position: absolute;
     object-fit: contain;
+    
     max-width: 100%;
     height: auto;
 }
@@ -90,9 +93,9 @@ body {
 
 .buttons {
     display: flex;
-    padding-top: 5%;
+    padding-top: 2%;
+    margin-bottom: 3%;
     justify-content: center;
-    padding: 2% 5%;
     background-color: rgb(253, 255, 254);
     gap: 12%;
 }
@@ -133,4 +136,15 @@ button {
 
 .blink {
     visibility: hidden;
+}
+
+@media screen and (width <= 1200px) {
+    .select {
+        font-size: 2.7vw; 
+    }
+
+    .title {
+        font-size: 4vw;
+    }
+    
 }
