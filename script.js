@@ -55,28 +55,28 @@ function getPlayerSelection() {
 function playRound (playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
-        alert(`In a relentless showdown of wills, you square off against the crafty strategy of The Computer. As ${playerSelection} meets ${computerSelection}, the confrontation yields no victor — both choices result in a tie. But fret not, for the battle persists! Let this moment fuel your resolve as you press onward with unwavering determination!`);
+        alert(`A most curious encounter! Thy ${playerSelection} clashes against the foe's ${computerSelection} — and lo, neither triumphs! Surely thou canst do better!`);
         return tieCount++;
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        alert("With the might of a true champion, your rock obliterates The Computer's feeble scissors. A triumphant roar fills the air as victory is firmly grasped in your hands! Let this glorious moment fuel your determination for future conquests!");
+        alert("Thy mighty rock hath shattered yon puny scissors! A victory worthy of song, albeit a short one.");
         return playerWon++;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        alert("In a display of strategic brilliance, your paper wraps itself around The Computer's rock, rendering it powerless. With a victorious flourish, you emerge as the undisputed victor! Revel in this moment and carry the flame of victory into the battles that lie ahead!");
+        alert("With cunning craft, thy paper doth smother the foe's rock! Verily, a victory most unexpected!");
         return playerWon++;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        alert("With precision and finesse, your scissors cut through The Computer's paper like a hot knife through butter. A wave of triumph washes over you as victory is claimed! Let this win be a testament to your skill and resolve as you press forward!");
+        alert("Like a knight wielding a blade, thou hast cut down the foe's paper. Victory is thine!");
         return playerWon++;
     } else if (playerSelection === "rock" && computerSelection === "paper") {
-        alert("Despite your unwavering resolve, your rock is no match for The Computer's cunning paper. Though defeat stings, let it serve as fuel for your determination to rise again! The battle may be lost, but the war rages on—heed this setback and prepare for the next challenge!");
+        alert("Woe betide thee! The foe's treacherous parchment hath ensnared thy stalwart rock.");
         return playerLost++;
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        alert("In a cruel twist of fate, The Computer's scissors shred through your paper with ruthless efficiency. Though defeat may sting, let it not extinguish the fire within you! Rise from the ashes of this loss and march forward, for the path to victory is paved with resilience!");
+        alert("Alas! Thy noble parchment hath been shredded by the foe's dastardly scissors. Tarry not in thy grief!");
         return playerLost++;
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        alert("Despite your best efforts, your scissors are shattered by the unyielding force of The Computer's rock. Though defeat may seem bitter now, let it be but a stepping stone on your path to greatness! Regroup, rearm, and prepare to face the challenges that lie ahead with renewed determination!");
+        alert("Thy valiant shears stand no chance against the foe's boulder of doom. Persevere, brave knight!");
         return playerLost++;
     } else {
-        alert("Ah, it seems the winds of sorcery have intervened in our rock-paper-scissors realm. Fear not, for even amidst the unexpected, the spirit of competition endures. Embrace the mystery, for it adds a dash of excitement to the game. Carry on with courage, for in the face of uncertainty, true champions emerge!");
+        alert("What sorcery is this? Thy choice defies comprehension! Mayhaps consult the rulebook next time.");
         return tieCount++;
     }
 }
@@ -90,13 +90,13 @@ function playGame() {
     }
 
     if (playerWon > playerLost) {
-        alert("After a grueling five-round showdown, you emerge victorious over The Computer! With unwavering determination and strategic prowess, you've proven yourself as the ultimate champion of rock-paper-scissors. Let the sweet taste of victory fuel your ambition as you stand triumphant against all odds!");
+        alert("Huzzah! After five fierce bouts, thou hast bested the cunning contraption! Revel in thy triumph, brave knight!");
     } else if (playerWon < playerLost) {
-        alert("After an intense battle spanning five rounds, victory eludes your grasp as The Computer emerges triumphant. Though defeat may sting, let it not extinguish the fire within you! Rise from this setback with renewed determination, for the journey to greatness is fraught with challenges. The next battle awaits, and with it, the chance for redemption!");
+        alert("Alack! The infernal machine hath claimed victory after five hard-fought rounds. Chin up, noble one, thy time shall come!");
     } else if (playerWon === playerLost && tieCount === 1) {
-        alert("In a thrilling conclusion to the battle, the game ends in a tie, with both you and The Computer showcasing remarkable skill and resilience. While neither emerges as the definitive victor, let this outcome serve as a testament to the closely matched contest between you. With each round fiercely contested, the balance of power teetered on a knife's edge. As the dust settles, take pride in your performance and let this experience fortify your determination for future clashes. For in the world of rock-paper-scissors, every tie is a reminder of the endless possibilities that await in the quest for victory!");
-    } else if (tieCount === 4) {
-        alert("In an astonishing twist of fate, each round of the battle ends in a deadlock, leaving both you and The Computer in a rare standstill. Despite the absence of a clear victor, let this remarkable display of equilibrium inspire your resolve for future encounters. For in the realm of rock-paper-scissors, every tie serves as a testament to the enduring balance of skill and strategy. Harness this equilibrium as you march forward, ready to seize victory in the battles yet to come!");
+        alert("A true nail-biter! The contest ends in a tie—both combatants proving equally formidable. Prepare for a rematch, good knight!");
+    } else if (tieCount === 5) {
+        alert("Zounds! Five rounds, five ties. Is this a tournament or a dance of indecision? Sharpen thy wits for the next fray!");
     }
 }
 
