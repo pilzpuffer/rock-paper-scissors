@@ -45,15 +45,15 @@ const gameState = {
 const validMove = ["rock", "paper", "scissors"];
 
 function randomize (arr) {
-    return arr[Math.floor(Math.random() *arr.length)]; //bread and butter of this entire project
+    return arr[Math.floor(Math.random() * arr.length)]; //bread and butter of this entire project
 }
 
 function setupMoveSelection() {
     chosenMove.forEach((button) => {
         button.addEventListener("click", (event) => {
-            playerChoice = event.currentTarget.getAttribute("id");
-            enemyChoice = randomize(validMove);
-            playMatch(playerChoice, enemyChoice); // Pass the selection to a function
+            gameState.playerChoice = event.currentTarget.getAttribute("id");
+            gameState.enemyChoice = randomize(validMove);
+            playMatch(gameState.playerChoice, gameState.enemyChoice); // Pass the selection to a function
         });
     });
 }
