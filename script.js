@@ -68,7 +68,6 @@ function updateGameState(outcome, generate) {
     seenLines.push(generate);
 }
 
-
 const paperTies = [
 "Ah, thou and the foe conjure spells in tandem, only to fizzle out before the fun begins. Mayhap practice makes perfect?",
 "Two arcane sparks meet, only to leave both parties unsatisfied. One hopes thy next encounter yields more… fireworks.",
@@ -122,7 +121,6 @@ const scissorsLoss = [
 "A valiant effort, but thy steel is repelled. One imagines thou art accustomed to premature retreats.",
 "Thy frenzied strikes falter against the foe’s shield. Perchance thou wert too eager?",
 "Thy blades falter before the foe's defense. One wonders if thou art always so easily disarmed."
-
 ];
 
 const scissorsWin = [
