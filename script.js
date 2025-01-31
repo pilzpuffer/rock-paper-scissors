@@ -13,14 +13,14 @@ chosenMove.forEach((button) => {
             }
             
             event.target.classList.add("chosen");
+            textSelector.classList.add("select");
+
             textSelector.textContent = "";
             let buttonIdSpan = document.createElement("span");
             buttonIdSpan.textContent = `${button.id}`;
             textSelector.append("You select ");
             textSelector.append(buttonIdSpan);
-            textSelector.append(" as your weapon");
-            // textSelector.textContent = `You select ${button.id} as your weapon`;
-            textSelector.classList.add("select");
+            textSelector.append(" as your weapon");    
             
             blinkInterval = setInterval(() => blinkEffect(buttonIdSpan), blinkSpeed);
 
