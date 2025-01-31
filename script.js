@@ -59,15 +59,38 @@ function setupMoveSelection() {
 }
 
 function playMatch(playerChoice, enemyChoice) {
-    if (playerChoice === enemyChoice) {
-        console.log(`your ${playerChoice} and their ${enemyChoice} are twinning`)
-    } else {
-        console.log(`you got ${playerChoice} and they got ${enemyChoice}`)
+    if (playerChoice === enemyChoice && playerChoice === "rock") {
+        console.log(randomize(rockTies));
+    } else if (playerChoice === enemyChoice && playerChoice === "paper") {
+        console.log(randomize(paperTies));
+    } else if (playerChoice === enemyChoice && playerChoice === "scissors") {
+        console.log(randomize(scissorTies));
+    } 
+    
+        else if (playerChoice === "rock" && enemyChoice === "paper") {
+        console.log(randomize(rockLoss));
+    }   else if (playerChoice === "rock" && enemyChoice === "scissors") {
+        console.log(randomize(rockWin));
+    } 
+    
+        else if (playerChoice === "paper" && enemyChoice === "rock") {
+        console.log(randomize(paperWin));
+    }   else if (playerChoice === "paper" && enemyChoice === "scissors") {
+            console.log(randomize(paperLoss));
+        } 
+    
+        else if (playerChoice === "scissors" && enemyChoice === "rock") {
+        console.log(randomize(scissorsLoss));
+    } else if (playerChoice === "scissors" && enemyChoice === "paper") {
+        console.log(randomize(scissorsWin));
+    } 
+    
+        else {
+        console.log("Milord! Thy contraption hath broken");
     }
-}
-
+};
 setupMoveSelection();
-playMatch();
+playMatch(); 
 
 
 const paperTies = [
