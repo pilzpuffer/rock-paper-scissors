@@ -44,6 +44,7 @@ body {
 .main-block {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 60%;
     height: 100%;
     background-color: rgb(253, 255, 254); 
@@ -113,6 +114,27 @@ button {
     background-position: center;
     background-repeat: no-repeat;
     background-color: rgb(253, 255, 254);
+}
+
+.action-text {
+    aspect-ratio: 50 / 11;
+    border: blue solid;
+    width: 50vw;
+    margin: 2% 0%;
+}
+
+.counters {
+    display: flex;
+    justify-content: center;
+    gap: 12%;
+}
+
+.counters div {
+    aspect-ratio: 7 / 6; 
+    width: 5vw; 
+    height: auto;
+    border: solid red;
+    border-radius: 5%;
 }
 
 .text-block span {

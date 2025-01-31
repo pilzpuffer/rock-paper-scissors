@@ -43,6 +43,7 @@ const gameState = {
 };
 
 const validMove = ["rock", "paper", "scissors"];
+const seenLines = [] //we'll need to push the seen lines into this array to make sure that the player won't get repeat lines
 
 function randomize (arr) {
     return arr[Math.floor(Math.random() * arr.length)]; //bread and butter of this entire project
@@ -59,35 +60,76 @@ function setupMoveSelection() {
 }
 
 function playMatch(playerChoice, enemyChoice) {
-    if (playerChoice === enemyChoice && playerChoice === "rock") {
-        console.log(randomize(rockTies));
-    } else if (playerChoice === enemyChoice && playerChoice === "paper") {
-        console.log(randomize(paperTies));
-    } else if (playerChoice === enemyChoice && playerChoice === "scissors") {
-        console.log(randomize(scissorTies));
-    } 
-    
-        else if (playerChoice === "rock" && enemyChoice === "paper") {
-        console.log(randomize(rockLoss));
-    }   else if (playerChoice === "rock" && enemyChoice === "scissors") {
-        console.log(randomize(rockWin));
-    } 
-    
-        else if (playerChoice === "paper" && enemyChoice === "rock") {
-        console.log(randomize(paperWin));
-    }   else if (playerChoice === "paper" && enemyChoice === "scissors") {
-            console.log(randomize(paperLoss));
+    actionText.textContent = "";
+    let generate = "";
+    if (seenLines.includes(generate)) {
+        playMatch(playerChoice, enemyChoice);
+    }
+
+    //ties are handled here
+        if (playerChoice === enemyChoice && playerChoice === "rock") {
+            generate = randomize(rockTies);
+            actionText.textContent = generate;
+            gameState.tieCount++;
+            seenLines.push(generate);
+
+    }   else if (playerChoice === enemyChoice && playerChoice === "paper") {
+            generate = randomize(paperTies);
+            actionText.textContent = generate;
+            gameState.tieCount++;
+            seenLines.push(generate);
+
+    }   else if (playerChoice === enemyChoice && playerChoice === "scissors") {
+            generate = randomize(scissorTies);
+            actionText.textContent = generate;
+            gameState.tieCount++;
+            seenLines.push(generate);
         } 
     
-        else if (playerChoice === "scissors" && enemyChoice === "rock") {
-        console.log(randomize(scissorsLoss));
-    } else if (playerChoice === "scissors" && enemyChoice === "paper") {
-        console.log(randomize(scissorsWin));
+    //rock scenarios (other than ties) are handled here
+        else if (playerChoice === "rock" && enemyChoice === "paper") {
+            generate = randomize(rockLoss);
+            actionText.textContent = generate;
+            gameState.playerLost++;
+            seenLines.push(generate);
+    }   else if (playerChoice === "rock" && enemyChoice === "scissors") {
+            generate = randomize(rockWin);
+            actionText.textContent = generate;
+            gameState.playerWon++;
+            seenLines.push(generate);
     } 
     
+    //paper scenarios (other than ties) are handled here
+        else if (playerChoice === "paper" && enemyChoice === "scissors") {
+            generate = randomize(paperLoss);
+            actionText.textContent = generate;
+            gameState.playerLost++;
+            seenLines.push(generate);
+    }   else if (playerChoice === "paper" && enemyChoice === "rock") {
+            generate = randomize(paperWin);
+            actionText.textContent = generate;
+            gameState.playerWon++;
+            seenLines.push(generate);
+    }   
+    
+    //scissor scenarios (other than ties) are handled here
+        else if (playerChoice === "scissors" && enemyChoice === "rock") {
+            generate = randomize(scissorsLoss);
+            actionText.textContent = generate;
+            gameState.playerLost++;
+            seenLines.push(generate);
+    }   else if (playerChoice === "scissors" && enemyChoice === "paper") {
+            generate = randomize(scissorsWin);
+            actionText.textContent = generate;
+            gameState.playerWon++;
+            seenLines.push(generate);
+    } 
+    
+    //catch-all if something breaks in this logic
         else {
-        console.log("Milord! Thy contraption hath broken");
+        actionText.textContent = "Milord! Thy contraption hath broken";
     }
+    console.log(seenLines)
 };
 setupMoveSelection();
 playMatch(); 
@@ -236,6 +278,4 @@ const finalAllTie = [
 "By the gods! Five ties? One wonders if thou art courting the foe instead of defeating them.",
 "Five ties—surely this doth border on flirtation. Pray, sort out thy affections and claim victory next time."
 ];
-
-const seenLines = [] //we'll need to push the seen lines into this array to make sure that the player won't get repeat lines
 
