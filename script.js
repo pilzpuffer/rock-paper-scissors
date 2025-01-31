@@ -32,21 +32,15 @@ chosenMove.forEach((button) => {
             event.target.classList.remove("chosen");
             textSelector.remove();
         });
-
-        button.addEventListener("click", (event) => {
-            function getPlayerSelection() {
-                return event.currentTarget.getAttribute("id");
-            }
         });
 
-        });
-
-
-
-
-let tieCount = 0;
-let playerWon = 0;
-let playerLost = 0;
+const gameState = {
+  tieCount: 0,
+  playerWon: 0,
+  playerLost: 0,
+  playerChoice: null,
+  enemyChoice: null,
+};
 
 const validMove = ["rock", "paper", "scissors"];
 
@@ -54,18 +48,27 @@ function randomize (arr) {
     return arr[Math.floor(Math.random() *arr.length)]; //bread and butter of this entire project
 }
 
-function getEnemySelection () {
-    return randomize(validMove);
-}
-
-function getPlayerSelection () {
-    chosenMove.forEach((button) => { 
+function setupMoveSelection() {
+    chosenMove.forEach((button) => {
         button.addEventListener("click", (event) => {
-                return event.currentTarget.getAttribute("id");
+            playerChoice = event.currentTarget.getAttribute("id");
+            enemyChoice = randomize(validMove);
+            playMatch(playerChoice, enemyChoice); // Pass the selection to a function
         });
-        });
-
+    });
 }
+
+function playMatch(playerChoice, enemyChoice) {
+    if (playerChoice === enemyChoice) {
+        console.log(`your ${playerChoice} and their ${enemyChoice} are twinning`)
+    } else {
+        console.log(`you got ${playerChoice} and they got ${enemyChoice}`)
+    }
+}
+
+setupMoveSelection();
+playMatch();
+
 
 const paperTies = [
 "Ah, thou and the foe conjure spells in tandem, only to fizzle out before the fun begins. Mayhap practice makes perfect?",
