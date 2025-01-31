@@ -59,80 +59,14 @@ function setupMoveSelection() {
     });
 }
 
-function playMatch(playerChoice, enemyChoice) {
-    actionText.textContent = "";
-    let generate = "";
-    if (seenLines.includes(generate)) {
-        playMatch(playerChoice, enemyChoice);
-    }
+function updateGameState(outcome, generate) {
+    if (outcome === "tie") gameState.tieCount++;
+    else if (outcome === "win") gameState.playerWon++;
+    else if (outcome === "loss") gameState.playerLost++;
 
-    //ties are handled here
-        if (playerChoice === enemyChoice && playerChoice === "rock") {
-            generate = randomize(rockTies);
-            actionText.textContent = generate;
-            gameState.tieCount++;
-            seenLines.push(generate);
-
-    }   else if (playerChoice === enemyChoice && playerChoice === "paper") {
-            generate = randomize(paperTies);
-            actionText.textContent = generate;
-            gameState.tieCount++;
-            seenLines.push(generate);
-
-    }   else if (playerChoice === enemyChoice && playerChoice === "scissors") {
-            generate = randomize(scissorTies);
-            actionText.textContent = generate;
-            gameState.tieCount++;
-            seenLines.push(generate);
-        } 
-    
-    //rock scenarios (other than ties) are handled here
-        else if (playerChoice === "rock" && enemyChoice === "paper") {
-            generate = randomize(rockLoss);
-            actionText.textContent = generate;
-            gameState.playerLost++;
-            seenLines.push(generate);
-    }   else if (playerChoice === "rock" && enemyChoice === "scissors") {
-            generate = randomize(rockWin);
-            actionText.textContent = generate;
-            gameState.playerWon++;
-            seenLines.push(generate);
-    } 
-    
-    //paper scenarios (other than ties) are handled here
-        else if (playerChoice === "paper" && enemyChoice === "scissors") {
-            generate = randomize(paperLoss);
-            actionText.textContent = generate;
-            gameState.playerLost++;
-            seenLines.push(generate);
-    }   else if (playerChoice === "paper" && enemyChoice === "rock") {
-            generate = randomize(paperWin);
-            actionText.textContent = generate;
-            gameState.playerWon++;
-            seenLines.push(generate);
-    }   
-    
-    //scissor scenarios (other than ties) are handled here
-        else if (playerChoice === "scissors" && enemyChoice === "rock") {
-            generate = randomize(scissorsLoss);
-            actionText.textContent = generate;
-            gameState.playerLost++;
-            seenLines.push(generate);
-    }   else if (playerChoice === "scissors" && enemyChoice === "paper") {
-            generate = randomize(scissorsWin);
-            actionText.textContent = generate;
-            gameState.playerWon++;
-            seenLines.push(generate);
-    } 
-    
-    //catch-all if something breaks in this logic
-        else {
-        actionText.textContent = "Milord! Thy contraption hath broken";
-    }
-    console.log(seenLines)
-};
-setupMoveSelection();
-playMatch(); 
+    actionText.textContent = generate;
+    seenLines.push(generate);
+}
 
 
 const paperTies = [
@@ -279,3 +213,56 @@ const finalAllTie = [
 "Five ties—surely this doth border on flirtation. Pray, sort out thy affections and claim victory next time."
 ];
 
+const tieScenarios = {
+    rock: rockTies,
+    paper: paperTies,
+    scissors: scissorTies
+};
+
+const outcomeScenarios = {
+    rock: { 
+        paper: { type: "loss", message: rockLoss }, 
+        scissors: { type: "win", message: rockWin },
+    },
+    paper: { 
+        scissors: { type: "loss", message: paperLoss }, 
+        rock: { type: "win", message: paperWin } 
+    },
+    scissors: { 
+        rock: { type: "loss", message: scissorsLoss }, 
+        paper: { type: "win", message: scissorsWin }  
+    }
+}
+
+function playMatch(playerChoice, enemyChoice) {
+    actionText.textContent = "";
+    let generate = "";
+    if (seenLines.includes(generate)) {
+        playMatch(playerChoice, enemyChoice);
+    }
+
+    //ties are handled here
+        if (playerChoice === enemyChoice) {
+            generate = randomize(tieScenarios[playerChoice]);
+            updateGameState("tie", generate)
+    } 
+    
+    //all other scenarios are handled here
+        else if (playerChoice !== enemyChoice) {
+            const outcome = outcomeScenarios[playerChoice][enemyChoice];
+            if (outcome.type === "win") {
+                generate = randomize(outcome.message);
+                updateGameState("win", generate);
+            } else {
+                generate = randomize(outcome.message);
+                updateGameState("loss", generate);
+            }
+
+    }
+    //catch-all if something breaks in this logic
+        else {
+        actionText.textContent = "Milord! Thy contraption hath broken";
+    }
+};
+setupMoveSelection();
+playMatch(); 
