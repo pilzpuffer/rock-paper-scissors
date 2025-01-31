@@ -115,6 +115,10 @@ button {
     background-color: rgb(253, 255, 254);
 }
 
+.text-block span {
+    color: red;
+}
+
 #rock {
     background-image: url("./icons/rock.webp");
     
