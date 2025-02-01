@@ -2,6 +2,14 @@ const chosenMove = document.querySelectorAll(".moveSelector");
 const textBlock = document.querySelector(".text-block");
 const actionText = document.querySelector(".action-text");
 
+const playerCounterScore = document.querySelector(".counter-player .score");
+const tieCounterScore = document.querySelector(".counter-ties .score"); 
+const enemyCounterScore = document.querySelector(".counter-enemy .score"); 
+
+playerCounterScore.textContent = "0";
+tieCounterScore.textContent = "0";
+enemyCounterScore.textContent = "0";
+
 //this part adds button effects
 chosenMove.forEach((button) => {
     const textSelector = document.createElement("div");
@@ -60,9 +68,16 @@ function setupMoveSelection() {
 }
 
 function updateGameState(outcome, generate) {
-    if (outcome === "tie") gameState.tieCount++;
-    else if (outcome === "win") gameState.playerWon++;
-    else if (outcome === "loss") gameState.playerLost++;
+    if (outcome === "tie") {
+        gameState.tieCount++;
+        tieCounterScore.textContent = gameState.tieCount;
+    } else if (outcome === "win") {
+        gameState.playerWon++;
+        playerCounterScore.textContent = gameState.playerWon;
+    } else if (outcome === "loss") {
+        gameState.playerLost++;
+        enemyCounterScore.textContent = gameState.playerLost;
+    }
 
     actionText.textContent = generate;
     seenLines.push(generate);
@@ -258,9 +273,12 @@ function playMatch(playerChoice, enemyChoice) {
 
     }
     //catch-all if something breaks in this logic
-        else {
+    else if (playerWon === playerLost === tieCount === 0) {
         actionText.textContent = "Milord! Thy contraption hath broken";
-    }
+        } else {
+            actionText.textContent = "";
+        }
 };
 setupMoveSelection();
 playMatch(); 
+
