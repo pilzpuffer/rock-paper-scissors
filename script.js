@@ -97,7 +97,7 @@ const paperWin = [
 "Thy sorcery overwhelms the foe. A triumph most magical—pray tell, do thou always leave such an impression?",
 "Thy enchanted scroll leaves the foe exposed and trembling. One wonders if all thy performances leave others so vulnerable.",
 "With but a flick of parchment, thou hath disarmed the foe. Perhaps thy foes should brace themselves better for such wizardry.",
-"A spell well-cast! The foe falters, left in awe of thy commanding presence—though who could blame them?",
+"A spell well-cast! The foe falters, left in awe of thy commanding presence — though who could blame them?",
 "Thy arcane prowess overwhelms the foe. One imagines thou art accustomed to leaving others speechless."
 ];
 
