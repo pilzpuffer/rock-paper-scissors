@@ -1,3 +1,4 @@
+const body = document.body;
 const chosenMove = document.querySelectorAll(".moveSelector");
 const textBlock = document.querySelector(".text-block");
 const actionText = document.querySelector(".action-text");
@@ -93,7 +94,7 @@ function updateGameState(outcome, generate) {
     actionText.textContent = generate;
     seenLines.push(generate);
 }
-
+// match resolutions
 const paperTies = [
 "Ah, thou and the foe conjure spells in tandem, only to fizzle out before the fun begins. Mayhap practice makes perfect?",
 "Two arcane sparks meet, only to leave both parties unsatisfied. One hopes thy next encounter yields more… fireworks.",
@@ -193,6 +194,7 @@ const rockWin = [
 "Thy defense stands resolute, leaving the foe flustered and defeated. One wonders how often thou leaves others so frustrated."
 ];
 
+//tournament resolutions
 const finalVictory = [
 "Huzzah! Thou hath bested the foe in five fierce bouts. Truly, thy mastery of sword, shield, and spell is unmatched—though one wonders if thou enjoy being admired so much.",
 "Rejoice, noble champion! Thy triumph is the stuff of legends—and possibly tavern gossip.",
@@ -237,6 +239,8 @@ const finalAllTie = [
 "Five ties—surely this doth border on flirtation. Pray, sort out thy affections and claim victory next time."
 ];
 
+
+//icon lines - mage
 const mageHover = [
 "An incantation for readability awaits thy click.",
 "Click henceforth for a script gentler on thine eyes.",
@@ -277,6 +281,7 @@ const mageUnClickLots = [
 "A dance betwixt fonts? Mayhap I should charge admission."
 ];
 
+//icon lines - jester
 const jesterHover = [
 "Fancy a tune? Click, and I shall jig merrily!",
 "Let the revelry begin—if thou darest click.",
@@ -363,57 +368,16 @@ function pickLine (selectedLine, parameter) {
 }
 
 function talk(selectedLine, parameter) {
-    if (selectedLine === "jester") {
-        if (parameter === "click") {
-            if (jesterClickCounter >= 4) {
-                pickLine("jesterLots", "click");
-            } else {
-                pickLine("jester", "click");
-            }
-        }
+    const lostThreshholds = { click: 4, unclick: 4, hover: 2 };
 
-        if (parameter === "unclick") {
-            if (jesterClickCounter >= 4) {
-                pickLine("jesterLots", "unclick");
-            } else {
-                pickLine("jester", "unclick");
-            }
-        }
-        if (parameter === "hover") {
-            if (jesterHoverCounter > 2) {
-                pickLine("jesterLots","hover");
-            } else {
-                pickLine("jester", "hover");
-            }
-        }
-        
+    const counters = {
+        jester: { click: jesterClickCounter, unclick: jesterClickCounter, hover: jesterHoverCounter },
+        mage: { click: mageClickCounter, unclick: mageClickCounter, hover: mageHoverCounter }
     }
 
-    if (selectedLine === "mage") {
-        if (parameter === "click") {
-            if (mageClickCounter >= 4) {
-                pickLine("mageLots", "click");
-            } else {
-                pickLine("mage", "click");
-            }
-        }
-
-        if (parameter === "unclick") {
-            if (mageClickCounter >= 4) {
-                pickLine("mageLots", "unclick");
-            } else {
-                pickLine("mage", "unclick");
-            }
-        }
-        if (parameter === "hover") {
-            if (mageHoverCounter > 2) {
-                pickLine("mageLots","hover");
-            } else {
-                pickLine("mage", "hover");
-            }
-        }
-        
-    }
+    const category = counters[selectedLine][parameter] > lostThreshholds[parameter] ? `${selectedLine}Lots` : selectedLine;
+    
+    pickLine(category, parameter);
 
     talkingBlock.appendChild(iconTalking);
 
@@ -433,7 +397,7 @@ function shutUp() {
 
 musicButton.addEventListener("click", () => {
     jesterClickCounter++;
-    mainTheme.volume = 0.15;
+    mainTheme.volume = 0.1;
     mainTheme.play();
     talk("jester", "click");
 
@@ -484,6 +448,11 @@ const outcomeScenarios = {
     }
 }
 
+let finalLine = "";
+
+function tournamentHelper() {
+
+}
 
 
 function tournamentFinal() {
