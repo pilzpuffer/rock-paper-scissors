@@ -55,7 +55,7 @@ body {
     background-color: rgb(253, 255, 254); 
     min-width: 650px;
     padding: 0% 2.5%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .leftside-block,
@@ -179,11 +179,11 @@ button {
     width: 7vw; 
 }
 
-.font-icon {
+.font {
     background-image: url(./icons/mage.webp);
 }
 
-.music-icon {
+.music {
     background-image: url(./icons/jester.webp);
 }
 

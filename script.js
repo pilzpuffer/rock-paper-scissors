@@ -1,6 +1,13 @@
 const chosenMove = document.querySelectorAll(".moveSelector");
 const textBlock = document.querySelector(".text-block");
 const actionText = document.querySelector(".action-text");
+const bottomPart = document.querySelector(".bottom-part");
+const middleBlock = document.querySelector(".middle-block");
+const talkingBlock = document.querySelector(".talking-block");
+
+const mainTheme = document.querySelector(".main-theme");
+const fontButton = document.querySelector(".font");
+const musicButton = document.querySelector(".music");
 
 const playerCounterScore = document.querySelector(".counter-player .score");
 const tieCounterScore = document.querySelector(".counter-ties .score"); 
@@ -225,6 +232,231 @@ const finalAllTie = [
 "By the gods! Five ties? One wonders if thou art courting the foe instead of defeating them.",
 "Five ties—surely this doth border on flirtation. Pray, sort out thy affections and claim victory next time."
 ];
+
+const mageHover = [
+"An incantation for readability awaits thy click.",
+"Click henceforth for a script gentler on thine eyes.",
+"A single touch shall unveil a font most considerate.",
+"Desire clearer parchment? A mere click shall conjure it."
+];
+
+const mageHoverLots = [
+"Hovering like a moth to a flame, eh? What dost thou seek?",
+"Be ye casting a spell upon me, or merely testing mine patience?",
+"Ah, a scholar of hovering arts, I see.",
+"If thou seeketh answers, speak plainly, not with thy timid dance!"
+];
+
+const mageClick = [
+"By the stars, clarity cometh!",
+"The runes align for thy comfort.",
+"Magic hath sharpened thy sight!"
+];
+
+const mageUnClick = [
+"Thy scroll once more wears its regal attire.",
+"The arcane whispers return.",
+"The ancient script reigns once more."
+];
+
+const mageClickLots = [
+"Back again? Dost thou think I’m a common scribe for thy whims?",
+"By the stars! Do ye take joy in tormenting this poor mage?",
+"Art thou conducting some experiment on mine patience?",
+"This hath become a farce most tiresome—yet here I am!"
+];
+
+const mageUnClickLots = [
+"And off it goes again! Hast thou nothing better to do with my magic?",
+"Hmph. Toggle it one more time, and I’ll conjure thee a headache!",
+"Oh, verily — this is the fifth time today. What next, invisible ink?",
+"A dance betwixt fonts? Mayhap I should charge admission."
+];
+
+const jesterHover = [
+"Fancy a tune? Click, and I shall jig merrily!",
+"Let the revelry begin—if thou darest click.",
+"Silence or serenade? A single click decides!",
+"Click me flute, and I shall prance with glee!"
+];
+
+const jesterHoverLots = [
+"A fleeting glance, then gone again — oh, how mysterious!",
+"Oh! Back so soon? Thou art a most curious audience!",
+"Ah, thou teases me! Come now, I’m but a humble jester!",
+"Flitting about like a merry sprite — dost thou wish to dance?"
+];
+
+const jesterClick = [
+"A jaunty jig cometh forth! Dance if ye dare, milord!",
+"I prance and pipe in thy honor!",
+"Music fills the air — let mirth abound!",
+"The revels commence—tap thy toes!"
+];
+
+const jesterUnClick = [
+"Hark, silence descends — nay flute, nay frolic.",
+"Very well, I shall rest my flute... though it weeps without melody.",
+"If that’s your wish, I’ll stow my songs... but the air feels hollow now.",
+"No music? My heart breaks like a lute string."
+];
+
+const jesterClickLots = [
+"Thou can’t resist my melodies, can thee? Let’s play on!",
+"Flip that switch a thousand times — I shall serenade thee still!",
+"On, off, on, off—just say the word, friend, and I shall play!",
+"Again we sing! Thy whims keep me spry and ever ready!",
+];
+
+const jesterUnClickLots = [
+"Another silence? Surely, thou takest delight in my heartbreak!",
+"Oh woe, the silence returns! Thou dost torment me for sport!",
+"Ah, the music fades again! I shall mourn… until thy next whim!",
+"A sad jester am I, toggled like a mere bell-pull."
+];
+
+const iconSpokenLines = {
+    mage: { 
+        hover: mageHover,
+        click: mageClick,
+        unclick: mageUnClick 
+    },
+
+    mageLots: { 
+        hover: mageHoverLots,
+        click: mageClickLots,
+        unclick: mageClickLots
+    },
+
+    jester: { 
+        hover: jesterHover,
+        click: jesterClick,
+        unclick: jesterUnClick
+    },
+
+    jesterLots: { 
+        hover: jesterHoverLots,
+        click: jesterClickLots,
+        unclick: jesterUnClickLots
+    }
+}
+
+const iconTalking = document.createElement("div");
+let timeouts = [];
+let seenIconLines = [];
+let shownLine = "";
+let jesterClickCounter = 0;
+let jesterHoverCounter = 0;
+let mageClickCounter = 0;
+let mageHoverCounter = 0;
+let attempts = 0;
+
+const includesAny = (arr, values) => values.some(v => arr.includes(v));
+const includesAll = (arr, values) => values.every(v => arr.includes(v));
+
+function pickLine (selectedLine, parameter) {
+    shownLine = randomize(iconSpokenLines[selectedLine][parameter]);
+    iconTalking.textContent = shownLine;
+    seenIconLines.push(shownLine);
+}
+
+function talk(selectedLine, parameter) {
+    if (selectedLine === "jester") {
+        if (parameter === "click") {
+            if (jesterClickCounter >= 4) {
+                pickLine("jesterLots", "click");
+            } else {
+                pickLine("jester", "click");
+            }
+        }
+
+        if (parameter === "unclick") {
+            if (jesterClickCounter >= 4) {
+                pickLine("jesterLots", "unclick");
+            } else {
+                pickLine("jester", "unclick");
+            }
+        }
+        if (parameter === "hover") {
+            if (jesterHoverCounter >= 3) {
+                pickLine("jesterLots","hover");
+            } else {
+                pickLine("jester", "hover");
+            }
+        }
+        
+    }
+
+    if (selectedLine === "mage") {
+        if (parameter === "click") {
+            if (mageClickCounter >= 4) {
+                pickLine("mageLots", "click");
+            } else {
+                pickLine("mage", "click");
+            }
+        }
+
+        if (parameter === "unclick") {
+            if (mageClickCounter >= 4) {
+                pickLine("mageLots", "unclick");
+            } else {
+                pickLine("mage", "unclick");
+            }
+        }
+        if (parameter === "hover") {
+            if (mageHoverCounter >= 3) {
+                pickLine("mageLots","hover");
+            } else {
+                pickLine("mage", "hover");
+            }
+        }
+        
+    }
+
+    talkingBlock.appendChild(iconTalking);
+
+    timeouts.push(setTimeout(function() {
+        iconTalking.remove();
+    }, 3000));
+}
+
+function shutUp() {
+    iconTalking.remove();
+    for (let i = 0; i < timeouts.length; i++) {
+        clearTimeout(timeouts[i]);
+    }
+}
+
+musicButton.addEventListener("click", () => {
+    mainTheme.volume = 0.2;
+    mainTheme.play();
+    jesterClickCounter++;
+    talk("jester", "click");
+
+    if (jesterClickCounter % 2 === 0) {
+        mainTheme.pause();
+        mainTheme.currentTime = 0;
+        talk("jester", "unclick");
+    }
+});
+
+musicButton.addEventListener("mouseover", () => {
+    talk("jester", "hover");
+    jesterHoverCounter++;
+});
+
+fontButton.addEventListener("mouseover", () => {
+    talk("mage", "hover");
+    mageHoverCounter++;
+});
+
+musicButton.addEventListener("mouseout", () => {
+    shutUp();
+});
+
+fontButton.addEventListener("mouseout", () => {
+    shutUp();
+});
 
 const tieScenarios = {
     rock: rockTies,
