@@ -55,6 +55,7 @@ const gameState = {
   playerLost: 0,
   playerChoice: null,
   enemyChoice: null,
+  matchesPlayed: 0
 };
 
 const validMove = ["rock", "paper", "scissors"];
@@ -77,12 +78,15 @@ function setupMoveSelection() {
 function updateGameState(outcome, generate) {
     if (outcome === "tie") {
         gameState.tieCount++;
+        gameState.matchesPlayed++;
         tieCounterScore.textContent = gameState.tieCount;
     } else if (outcome === "win") {
         gameState.playerWon++;
+        gameState.matchesPlayed++;
         playerCounterScore.textContent = gameState.playerWon;
     } else if (outcome === "loss") {
         gameState.playerLost++;
+        gameState.matchesPlayed++;
         enemyCounterScore.textContent = gameState.playerLost;
     }
 
@@ -343,7 +347,6 @@ const iconSpokenLines = {
 
 const iconTalking = document.createElement("div");
 let timeouts = [];
-let seenIconLines = [];
 let shownLine = "";
 let jesterClickCounter = 0;
 let jesterHoverCounter = 0;
@@ -357,7 +360,6 @@ const includesAll = (arr, values) => values.every(v => arr.includes(v));
 function pickLine (selectedLine, parameter) {
     shownLine = randomize(iconSpokenLines[selectedLine][parameter]);
     iconTalking.textContent = shownLine;
-    seenIconLines.push(shownLine);
 }
 
 function talk(selectedLine, parameter) {
@@ -378,7 +380,7 @@ function talk(selectedLine, parameter) {
             }
         }
         if (parameter === "hover") {
-            if (jesterHoverCounter >= 3) {
+            if (jesterHoverCounter > 2) {
                 pickLine("jesterLots","hover");
             } else {
                 pickLine("jester", "hover");
@@ -404,7 +406,7 @@ function talk(selectedLine, parameter) {
             }
         }
         if (parameter === "hover") {
-            if (mageHoverCounter >= 3) {
+            if (mageHoverCounter > 2) {
                 pickLine("mageLots","hover");
             } else {
                 pickLine("mage", "hover");
@@ -427,10 +429,12 @@ function shutUp() {
     }
 }
 
+//initially, I've planned to add more sound effects, but as of now, just the main theme seems to be sufficient enough
+
 musicButton.addEventListener("click", () => {
-    mainTheme.volume = 0.2;
-    mainTheme.play();
     jesterClickCounter++;
+    mainTheme.volume = 0.15;
+    mainTheme.play();
     talk("jester", "click");
 
     if (jesterClickCounter % 2 === 0) {
@@ -441,13 +445,14 @@ musicButton.addEventListener("click", () => {
 });
 
 musicButton.addEventListener("mouseover", () => {
-    talk("jester", "hover");
     jesterHoverCounter++;
+    talk("jester", "hover");
 });
 
+//font button functionality is meant to change the font to one that is still thematic, but more readable
 fontButton.addEventListener("mouseover", () => {
-    talk("mage", "hover");
     mageHoverCounter++;
+    talk("mage", "hover");  
 });
 
 musicButton.addEventListener("mouseout", () => {
@@ -479,9 +484,33 @@ const outcomeScenarios = {
     }
 }
 
+
+
+function tournamentFinal() {
+    if (gameState.playerWon > gameState.playerLost) {
+        //win scenario
+        //generate a line from the list of available win lines and output it + grey out selection buttons so that they won't be available for clicking - can make it into a function
+    } else if (gameState.playerWon < gameState.playerLost) {
+        //lose scenario
+        //generate a line from the list of available win lines and output it + grey out selection buttons so that they won't be available for clicking - can make it into a function
+    } else if (gameState.playerWon === gameState.playerLost && gameState.tieCount === 1) {
+        //tie scenario
+    } else if (gameState.tieCount === 5) {
+        //all tie
+    } else {
+
+    }
+}
+
 function playMatch(playerChoice, enemyChoice) {
     actionText.textContent = "";
     let generate = "";
+
+    if (gameState.matchesPlayed === 5) {
+        tournamentFinal();
+        return;
+    }
+
     if (seenLines.includes(generate)) {
         playMatch(playerChoice, enemyChoice);
     }
@@ -511,6 +540,6 @@ function playMatch(playerChoice, enemyChoice) {
             actionText.textContent = "";
         }
 };
+
 setupMoveSelection();
-playMatch(); 
 
