@@ -135,18 +135,19 @@ button {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    aspect-ratio: 33 / 13;
     border: black solid;
     box-shadow: 10px 5px 5px rgb(131,131,131);
     width: 55vw;
-    height: fit-content;
-    max-height: 320px;
+    height: 10vw;
+    min-height: 150px; 
     margin-top: 2%;
     padding: 2% 2%;
+    overflow: hidden;
 }
 
 .action-title {
     font-size: var(--action-title-size);
+    position: absolute;
 }
 
 .action-text {
@@ -156,12 +157,11 @@ button {
 .action-button {
     aspect-ratio: 9 / 3;
     border: black solid;
-    border-radius: 1%;
+    border-radius: 5%;
     width: max-content;
     padding: 0% 1%;
     font-size: var(--action-button-size);
     font-family: inherit;
-    transition: all 2s;
 }
 
 .counters {
@@ -250,6 +250,11 @@ button {
 
 .blink {
     visibility: hidden;
+}
+
+.disabled {
+    pointer-events: none; 
+    opacity: 0.5;
 }
 
 .hidden {

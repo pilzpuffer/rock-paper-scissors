@@ -2,7 +2,6 @@ const body = document.querySelector("body");
 const chosenMove = document.querySelectorAll(".moveSelector");
 const textBlock = document.querySelector(".text-block");
 const action = document.querySelector("action");
-const actionTitle = document.querySelector(".action-title");
 const actionText = document.querySelector(".action-text");
 const actionButton = document.querySelector(".action-button");
 const bottomPart = document.querySelector(".bottom-part");
@@ -22,37 +21,45 @@ tieCounterScore.textContent = "0";
 enemyCounterScore.textContent = "0";
 actionButton.hidden = true;
 
+
+
 //this part adds button effects
+const textSelector = document.createElement("div");
+
+function handleMouseOver(event) {
+    const button = event.currentTarget; // Get the button that triggered the event
+    const blinkSpeed = 850;
+    const blinkEffect = (element) => {
+        element.classList.toggle("blink");
+    };
+
+    button.classList.add("chosen");
+    textSelector.classList.add("select");
+
+    textSelector.textContent = "";
+    let buttonIdSpan = document.createElement("span");
+    buttonIdSpan.textContent = `${button.id}`;
+    textSelector.append("You select ");
+    textSelector.append(buttonIdSpan);
+    textSelector.append(" as your weapon");
+
+    blinkInterval = setInterval(() => blinkEffect(buttonIdSpan), blinkSpeed);
+
+    textBlock.appendChild(textSelector);
+}
+
+function handleMouseOut(event) {
+    clearInterval(blinkInterval);
+    event.currentTarget.classList.remove("chosen");
+    textSelector.remove();
+}
+
 chosenMove.forEach((button) => {
-    const textSelector = document.createElement("div");
-
-        button.addEventListener("mouseover", (event) => {
-            const blinkSpeed = 850;
-            const blinkEffect = (element) => {
-                element.classList.toggle("blink");
-            }
-            
-            event.target.classList.add("chosen");
-            textSelector.classList.add("select");
-
-            textSelector.textContent = "";
-            let buttonIdSpan = document.createElement("span");
-            buttonIdSpan.textContent = `${button.id}`;
-            textSelector.append("You select ");
-            textSelector.append(buttonIdSpan);
-            textSelector.append(" as your weapon");    
-            
-            blinkInterval = setInterval(() => blinkEffect(buttonIdSpan), blinkSpeed);
-
-            textBlock.appendChild(textSelector);
-        });
-        
-        button.addEventListener("mouseout", (event) => {
-            clearInterval(blinkInterval);
-            event.target.classList.remove("chosen");
-            textSelector.remove();
-        });
-        });
+    button.disabled = false;
+    button.addEventListener("mouseover", handleMouseOver);
+    button.addEventListener("mouseout", handleMouseOut);
+    textSelector.textContent = "";
+});
 
 const gameState = {
   tieCount: 0,
@@ -64,7 +71,7 @@ const gameState = {
 };
 
 const validMove = ["rock", "paper", "scissors"];
-const seenLines = [] //we'll need to push the seen lines into this array to make sure that the player won't get repeat lines
+let seenLines = [] //we'll need to push the seen lines into this array to make sure that the player won't get repeat lines
 
 function randomize (arr) {
     return arr[Math.floor(Math.random() * arr.length)]; //bread and butter of this entire project
@@ -362,9 +369,6 @@ let mageClickCounter = 0;
 let mageHoverCounter = 0;
 let attempts = 0;
 
-const includesAny = (arr, values) => values.some(v => arr.includes(v));
-const includesAll = (arr, values) => values.every(v => arr.includes(v));
-
 function clearUpTimeouts () {
     for (let i = 0; i < timeouts.length; i++) {
         clearTimeout(timeouts[i]);
@@ -446,7 +450,7 @@ fontButton.addEventListener("click", () => {
         document.documentElement.style.setProperty('--select-size', '2.5vw');
         document.documentElement.style.setProperty('--talking-block-size', '2vw');
         talk("mage", "unclick");
-    } else {
+    } else { //sets the alternative font
             document.documentElement.style.setProperty('--title-size', '3.5vw');
             document.documentElement.style.setProperty('--action-title-size', '3vw');
             document.documentElement.style.setProperty('--action-text-size', '1.5vw');
@@ -489,19 +493,32 @@ const outcomeScenarios = {
     }
 }
 
+let tournamentActive = false;
 let finalLine = "";
 let final = document.createElement("div");
 final.textContent = ""
 
-function tournamentHelper(outcome, final) {
+function tournamentHelper(outcome, end) {
     finalLine = randomize(outcome); 
     actionText.textContent = finalLine;
-    actionTitle.textContent = final;  
+    final.classList.add("action-title");
+    final.textContent = end;
+
+    textBlock.appendChild(final);
 }
 
 
 function tournamentFinal() {
     actionButton.hidden = false;
+    tournamentActive = true;
+    textSelector.remove();
+    
+    chosenMove.forEach((button) => {
+        button.classList.add('disabled'); // Add a 'disabled' class to prevent interaction
+        button.classList.remove("chosen")
+        button.removeEventListener("mouseover", handleMouseOver);
+        button.removeEventListener("mouseout", handleMouseOut);
+    });
 
     if (gameState.playerWon > gameState.playerLost) {
         tournamentHelper(finalVictory, "Victory!");
@@ -516,9 +533,22 @@ function tournamentFinal() {
     }
 }
 
+function reenable() {
+    final.remove();
+    tournamentActive = false;
+
+    // Remove the 'disabled' class and re-enable events
+    chosenMove.forEach((button) => {
+        button.classList.remove('disabled');
+        button.addEventListener("mouseover", handleMouseOver);
+        button.addEventListener("mouseout", handleMouseOut);
+    });
+}
+
+
 function playMatch(playerChoice, enemyChoice) {
     actionText.textContent = "";
-    let generate = "";
+    let generate;
 
     if (gameState.matchesPlayed === 5) {
         tournamentFinal();
@@ -529,31 +559,51 @@ function playMatch(playerChoice, enemyChoice) {
         playMatch(playerChoice, enemyChoice);
     }
 
-    //ties are handled here
-        if (playerChoice === enemyChoice) {
-            generate = randomize(tieScenarios[playerChoice]);
-            updateGameState("tie", generate)
-    } 
-    
-    //all other scenarios are handled here
-        else if (playerChoice !== enemyChoice) {
-            const outcome = outcomeScenarios[playerChoice][enemyChoice];
-            if (outcome.type === "win") {
-                generate = randomize(outcome.message);
-                updateGameState("win", generate);
-            } else {
-                generate = randomize(outcome.message);
-                updateGameState("loss", generate);
-            }
-
+    if (seenLines.length === 8) {
+        seenLines = [];
     }
-    //catch-all if something breaks in this logic
-    else if (playerWon === playerLost === tieCount === 0) {
-        actionText.textContent = "Milord! Thy contraption hath broken";
+
+
+       //ties are handled here
+       if (playerChoice === enemyChoice) {
+        generate = randomize(tieScenarios[playerChoice]);
+        updateGameState("tie", generate)
+} 
+
+//all other scenarios are handled here
+    else if (playerChoice !== enemyChoice) {
+        const outcome = outcomeScenarios[playerChoice][enemyChoice];
+        if (outcome.type === "win") {
+            generate = randomize(outcome.message);
+            updateGameState("win", generate);
         } else {
-            actionText.textContent = "Milord! Tis just not working right!";
+            generate = randomize(outcome.message);
+            updateGameState("loss", generate);
         }
+
+}
+//catch-all if something breaks in this logic
+else if (playerWon === playerLost === tieCount === 0) {
+    actionText.textContent = "Milord! Thy contraption hath broken";
+    }
 };
 
 setupMoveSelection();
+
+actionButton.addEventListener("click", () => {
+    reenable();
+
+    gameState.tieCount = 0;
+    gameState.playerWon = 0;
+    gameState.playerLost = 0;
+    gameState.matchesPlayed = 0;
+
+    tieCounterScore.textContent = gameState.tieCount;
+    playerCounterScore.textContent = gameState.playerWon;
+    enemyCounterScore.textContent = gameState.playerLost;
+
+    actionText.textContent = "";
+
+    actionButton.hidden = true;
+});
 
