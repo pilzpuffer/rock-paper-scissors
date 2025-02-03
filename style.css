@@ -102,9 +102,9 @@ body {
 
 .text-block {
     display: flex;
+    height: 5vw;
     justify-content: center;
     padding: 2% 0%;
-    margin-bottom: 2%;
 }
 
 .buttons {
@@ -140,14 +140,14 @@ button {
     width: 55vw;
     height: 10vw;
     min-height: 150px; 
-    margin-top: 2%;
+    /* margin-top: 2%; */
     padding: 2% 2%;
     overflow: hidden;
 }
 
 .action-title {
     font-size: var(--action-title-size);
-    position: absolute;
+    /* position: absolute; */
 }
 
 .action-text {
@@ -273,12 +273,6 @@ button {
     font-family: "Medieval-Readable";
 }
 
-@media screen and (width >= 2000px) {
-    .action-title {
-        margin-top: -2%;
-    }
-}
-
 @media screen and (max-width: 1200px) {
     .select {
         font-size: 3vw;
@@ -286,6 +280,10 @@ button {
 
     .title {
         font-size: 4vw;
+    }
+
+    .action-text {
+        font-size: 2.5vw;
     }
 
     button {
@@ -300,6 +298,10 @@ button {
 
     .title {
         font-size: 5vw;
+    }
+
+    .action-text {
+        font-size: 3vw;
     }
 
     button {
