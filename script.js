@@ -21,7 +21,7 @@ tieCounterScore.textContent = "0";
 enemyCounterScore.textContent = "0";
 actionButton.hidden = true;
 
-
+actionText.textContent = "Salutations, valiant knight! Strike yonder buttons sixfold to earn thy place in this grand contest. Beneath thee, loyal servants stand prepared to fulfill thy every whim and fancy.";
 
 //this part adds button effects
 const textSelector = document.createElement("div");
@@ -547,7 +547,6 @@ function reenable() {
 
 
 function playMatch(playerChoice, enemyChoice) {
-    actionText.textContent = "";
     let generate;
 
     if (gameState.matchesPlayed === 5) {
