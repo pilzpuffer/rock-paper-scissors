@@ -1,7 +1,10 @@
-const body = document.body;
+const body = document.querySelector("body");
 const chosenMove = document.querySelectorAll(".moveSelector");
 const textBlock = document.querySelector(".text-block");
+const action = document.querySelector("action");
+const actionTitle = document.querySelector(".action-title");
 const actionText = document.querySelector(".action-text");
+const actionButton = document.querySelector(".action-button");
 const bottomPart = document.querySelector(".bottom-part");
 const middleBlock = document.querySelector(".middle-block");
 const talkingBlock = document.querySelector(".talking-block");
@@ -17,6 +20,7 @@ const enemyCounterScore = document.querySelector(".counter-enemy .score");
 playerCounterScore.textContent = "0";
 tieCounterScore.textContent = "0";
 enemyCounterScore.textContent = "0";
+actionButton.hidden = true;
 
 //this part adds button effects
 chosenMove.forEach((button) => {
@@ -196,7 +200,7 @@ const rockWin = [
 
 //tournament resolutions
 const finalVictory = [
-"Huzzah! Thou hath bested the foe in five fierce bouts. Truly, thy mastery of sword, shield, and spell is unmatched—though one wonders if thou enjoy being admired so much.",
+"Huzzah! Thou hath bested the foe in five fierce bouts. Thy mastery is unmatched — though one wonders if thou enjoy being admired so much.",
 "Rejoice, noble champion! Thy triumph is the stuff of legends—and possibly tavern gossip.",
 "A glorious victory! The bards shall sing of thy cunning and courage, though mayhap they’ll leave out the blushing admirers.",
 "Thou hath conquered all! Thy deeds shall echo through the realm, though one suspects thy ego needs no help with that.",
@@ -207,7 +211,6 @@ const finalVictory = [
 ];
 
 const finalDefeat = [
-"Alack! Thy foe claims victory after five fierce rounds. Thy shield splintered, thy spells spent, thy blade dulled—yet I suspect thy spirit shall rise again (along with thy temper).",
 "The foe hath triumphed, leaving thee humbled yet undaunted. Mayhap thou art used to bouncing back from such entanglements.",
 "Defeated, but not broken! Thy valor remains intact — along with thy tendency to linger where thou art bested.",
 "Though the foe stands victorious, thy spirit doth remain unyielding. Verily, thou art persistent if naught else.",
@@ -284,7 +287,7 @@ const mageUnClickLots = [
 //icon lines - jester
 const jesterHover = [
 "Fancy a tune? Click, and I shall jig merrily!",
-"Let the revelry begin—if thou darest click.",
+"Let the revelry begin — if thou darest click.",
 "Silence or serenade? A single click decides!",
 "Click me flute, and I shall prance with glee!"
 ];
@@ -300,7 +303,7 @@ const jesterClick = [
 "A jaunty jig cometh forth! Dance if ye dare, milord!",
 "I prance and pipe in thy honor!",
 "Music fills the air — let mirth abound!",
-"The revels commence—tap thy toes!"
+"The revels commence — tap thy toes!"
 ];
 
 const jesterUnClick = [
@@ -313,7 +316,7 @@ const jesterUnClick = [
 const jesterClickLots = [
 "Thou can’t resist my melodies, can thee? Let’s play on!",
 "Flip that switch a thousand times — I shall serenade thee still!",
-"On, off, on, off—just say the word, friend, and I shall play!",
+"On, off, on, off — just say the word, friend, and I shall play!",
 "Again we sing! Thy whims keep me spry and ever ready!",
 ];
 
@@ -334,7 +337,7 @@ const iconSpokenLines = {
     mageLots: { 
         hover: mageHoverLots,
         click: mageClickLots,
-        unclick: mageClickLots
+        unclick: mageUnClickLots
     },
 
     jester: { 
@@ -362,35 +365,46 @@ let attempts = 0;
 const includesAny = (arr, values) => values.some(v => arr.includes(v));
 const includesAll = (arr, values) => values.every(v => arr.includes(v));
 
-function pickLine (selectedLine, parameter) {
-    shownLine = randomize(iconSpokenLines[selectedLine][parameter]);
-    iconTalking.textContent = shownLine;
+function clearUpTimeouts () {
+    for (let i = 0; i < timeouts.length; i++) {
+        clearTimeout(timeouts[i]);
+    }
 }
 
 function talk(selectedLine, parameter) {
-    const lostThreshholds = { click: 4, unclick: 4, hover: 2 };
+    const lotsThreshholds = { click: 2, unclick: 2, hover: 2 };
 
     const counters = {
         jester: { click: jesterClickCounter, unclick: jesterClickCounter, hover: jesterHoverCounter },
         mage: { click: mageClickCounter, unclick: mageClickCounter, hover: mageHoverCounter }
     }
 
-    const category = counters[selectedLine][parameter] > lostThreshholds[parameter] ? `${selectedLine}Lots` : selectedLine;
-    
-    pickLine(category, parameter);
+    const category = counters[selectedLine][parameter] > lotsThreshholds[parameter] ? `${selectedLine}Lots` : selectedLine;
+    shownLine = randomize(iconSpokenLines[category][parameter]);
+    iconTalking.textContent = shownLine;
+
+
+    iconTalking.classList.toggle("blue", selectedLine === "mage");
+    iconTalking.classList.toggle("red", selectedLine !== "mage");
+
 
     talkingBlock.appendChild(iconTalking);
 
+    for (let i = 0; i < timeouts.length; i++) {
+        clearTimeout(timeouts[i]);
+    }
+
+    clearUpTimeouts();
     timeouts.push(setTimeout(function() {
         iconTalking.remove();
-    }, 3000));
+        iconTalking.classList.remove("blue", "red");
+    }, 3500));
 }
 
 function shutUp() {
     iconTalking.remove();
-    for (let i = 0; i < timeouts.length; i++) {
-        clearTimeout(timeouts[i]);
-    }
+    iconTalking.classList.remove("blue", "red");
+    clearUpTimeouts();
 }
 
 //initially, I've planned to add more sound effects, but as of now, just the main theme seems to be sufficient enough
@@ -413,14 +427,41 @@ musicButton.addEventListener("mouseover", () => {
     talk("jester", "hover");
 });
 
+musicButton.addEventListener("mouseout", () => {
+    shutUp();
+});
+
 //font button functionality is meant to change the font to one that is still thematic, but more readable
+fontButton.addEventListener("click", () => {
+    mageClickCounter++;
+    body.classList.toggle("fontReadable");
+
+    if (mageClickCounter % 2 === 0) { //re-enables the default font
+        document.documentElement.style.setProperty('--title-size', '4.5vw');
+        document.documentElement.style.setProperty('--action-title-size', '3.5vw');
+        document.documentElement.style.setProperty('--action-text-size', '2vw');
+        document.documentElement.style.setProperty('--action-text-button', '2vw');
+        document.documentElement.style.setProperty('--score-size', '5vw');
+        document.documentElement.style.setProperty('--name-size', '4vw');
+        document.documentElement.style.setProperty('--select-size', '2.5vw');
+        document.documentElement.style.setProperty('--talking-block-size', '2vw');
+        talk("mage", "unclick");
+    } else {
+            document.documentElement.style.setProperty('--title-size', '3.5vw');
+            document.documentElement.style.setProperty('--action-title-size', '3vw');
+            document.documentElement.style.setProperty('--action-text-size', '1.5vw');
+            document.documentElement.style.setProperty('--action-text-button', '1.5vw');
+            document.documentElement.style.setProperty('--score-size', '4.5vw');
+            document.documentElement.style.setProperty('--name-size', '3vw');
+            document.documentElement.style.setProperty('--select-size', '2vw');
+            document.documentElement.style.setProperty('--talking-block-size', '1.5vw');
+            talk("mage", "unclick");
+        }
+    });
+
 fontButton.addEventListener("mouseover", () => {
     mageHoverCounter++;
     talk("mage", "hover");  
-});
-
-musicButton.addEventListener("mouseout", () => {
-    shutUp();
 });
 
 fontButton.addEventListener("mouseout", () => {
@@ -449,25 +490,29 @@ const outcomeScenarios = {
 }
 
 let finalLine = "";
+let final = document.createElement("div");
+final.textContent = ""
 
-function tournamentHelper() {
-
+function tournamentHelper(outcome, final) {
+    finalLine = randomize(outcome); 
+    actionText.textContent = finalLine;
+    actionTitle.textContent = final;  
 }
 
 
 function tournamentFinal() {
-    if (gameState.playerWon > gameState.playerLost) {
-        //win scenario
-        //generate a line from the list of available win lines and output it + grey out selection buttons so that they won't be available for clicking - can make it into a function
-    } else if (gameState.playerWon < gameState.playerLost) {
-        //lose scenario
-        //generate a line from the list of available win lines and output it + grey out selection buttons so that they won't be available for clicking - can make it into a function
-    } else if (gameState.playerWon === gameState.playerLost && gameState.tieCount === 1) {
-        //tie scenario
-    } else if (gameState.tieCount === 5) {
-        //all tie
-    } else {
+    actionButton.hidden = false;
 
+    if (gameState.playerWon > gameState.playerLost) {
+        tournamentHelper(finalVictory, "Victory!");
+    } else if (gameState.playerWon < gameState.playerLost) {
+        tournamentHelper(finalDefeat, "Defeat...");
+    } else if (gameState.playerWon === gameState.playerLost) {
+        tournamentHelper(finalTie, "Tie");
+    } else if (gameState.tieCount === 5) {
+        tournamentHelper(finalAllTie, "Tie?");
+    } else {
+        actionText.textContent = "Milord! Thy contraption hath broken";
     }
 }
 
@@ -506,7 +551,7 @@ function playMatch(playerChoice, enemyChoice) {
     else if (playerWon === playerLost === tieCount === 0) {
         actionText.textContent = "Milord! Thy contraption hath broken";
         } else {
-            actionText.textContent = "";
+            actionText.textContent = "Milord! Tis just not working right!";
         }
 };
 

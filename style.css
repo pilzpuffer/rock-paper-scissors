@@ -12,6 +12,17 @@
     font-weight: normal;
 }
 
+:root {
+    --title-size: 4.5vw;
+    --action-title-size: 3.5vw;
+    --action-text-size: 2vw;
+    --action-button-size: 2vw;
+    --score-size: 5vw;
+    --name-size: 4vw;
+    --select-size: 2.5vw;
+    --talking-block-size: 2vw;
+  }
+
 html,
 body {
     margin: 0;
@@ -42,8 +53,8 @@ body {
     width: 100%;
     height: fit-content;
     justify-content: center;
-    font-size: 4.5vw;
-    padding: 3% 0%;
+    font-size: var(--title-size);
+    padding: 2.5% 0% 2%;
 }
 
 .middle-block {
@@ -85,7 +96,6 @@ body {
 .knight-left {
     position: absolute;
     object-fit: contain;
-    
     max-width: 100%;
     height: auto;
 }
@@ -100,7 +110,6 @@ body {
 .buttons {
     display: flex;
     padding-top: 1%;
-    /* margin-bottom: 3%; */
     justify-content: center;
     background-color: rgb(253, 255, 254);
     gap: 12%;
@@ -111,7 +120,7 @@ button {
     border: none;
     border-radius: 1%;
     aspect-ratio: 4 / 5; 
-    width: 10vw; 
+    width: 8vw; 
     height: auto;
     max-width: 200px; 
     max-width: 100%;
@@ -121,15 +130,38 @@ button {
     background-color: rgb(253, 255, 254);
 }
 
-.action-text {
+.action {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     aspect-ratio: 33 / 13;
     border: black solid;
     box-shadow: 10px 5px 5px rgb(131,131,131);
-    font-size: 2.5vw;
     width: 55vw;
-    max-height: 220px;
-    margin: 2% 0%;
+    height: fit-content;
+    max-height: 320px;
+    margin-top: 2%;
     padding: 2% 2%;
+}
+
+.action-title {
+    font-size: var(--action-title-size);
+}
+
+.action-text {
+    font-size: var(--action-text-size);
+}
+
+.action-button {
+    aspect-ratio: 9 / 3;
+    border: black solid;
+    border-radius: 1%;
+    width: max-content;
+    padding: 0% 1%;
+    font-size: var(--action-button-size);
+    font-family: inherit;
+    transition: all 2s;
 }
 
 .counters {
@@ -149,12 +181,12 @@ button {
 }
 
 .score {
-    font-size: 5vw;
+    font-size: var(--score-size);
     margin-bottom: -5%;
 }
 
 .name {
-    font-size: 4vw;
+    font-size: var(--name-size);
 }
 
 .top-part {
@@ -177,6 +209,10 @@ button {
     border-radius: 1%;
     aspect-ratio: 4 / 5; 
     width: 7vw; 
+}
+
+.talking-block {
+    font-size: var(--talking-block-size);
 }
 
 .font {
@@ -208,12 +244,34 @@ button {
 }
 
 .select {
-    font-size: 2.5vw; 
+    font-size: var(--select-size); 
     position: absolute;
 }
 
 .blink {
     visibility: hidden;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.blue {
+    color: darkblue;
+}
+
+.red {
+    color: red;
+}
+
+.fontReadable {
+    font-family: "Medieval-Readable";
+}
+
+@media screen and (width >= 2000px) {
+    .action-title {
+        margin-top: -2%;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -226,7 +284,7 @@ button {
     }
 
     button {
-        width: 20vw;
+        width: 12vw;
     }
 }
 
@@ -240,6 +298,6 @@ button {
     }
 
     button {
-        width: 25vw;
+        width: 15vw;
     }
 }
