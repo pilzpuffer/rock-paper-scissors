@@ -21,7 +21,7 @@ tieCounterScore.textContent = "0";
 enemyCounterScore.textContent = "0";
 actionButton.hidden = true;
 
-actionText.textContent = "Salutations, valiant knight! Strike yonder buttons sixfold to earn thy place in this grand contest. Beneath thee, loyal servants stand prepared to fulfill thy every whim and fancy.";
+actionText.textContent = "Salutations, valiant knight! Strike yonder buttons sixfold to earn thy place in this grand contest. Beneath thee, loyal servants stand prepared to fulfill thy every whim. And should the mood strike, spare a glance at the knights — they may surprise thee with wit and wisdom as the tournament unfolds.";
 
 //this part adds button effects
 const textSelector = document.createElement("div");
@@ -67,7 +67,9 @@ const gameState = {
   playerLost: 0,
   playerChoice: null,
   enemyChoice: null,
-  matchesPlayed: 0
+  matchesPlayed: 0,
+  tournamentsPlayed: 0,
+  tournamentOutcome: null
 };
 
 const validMove = ["rock", "paper", "scissors"];
@@ -334,6 +336,394 @@ const jesterUnClickLots = [
 "A sad jester am I, toggled like a mere bell-pull."
 ];
 
+//knight lines
+
+//left knight lines
+//head lines
+const leftKnightHeadBefore = [
+"What is it? You admire my rugged looks, eh? Thought not.",
+"What, never seen a handsome devil before?",
+"Look all you want, but I ain’t signing autographs.",
+"Trying to guess my hat size? Mind your own business.",
+"Gawking at me won't win you the tournament."
+];
+
+const leftKnightHeadDuring = [
+"Thinking too hard? I wouldn't recommend it.",
+"Staring hard enough to bore a hole, are we?",
+"Careful now, thinking can be dangerous.",
+"I can feel your thoughts bouncing off my skull."
+];
+
+const leftKnightHeadAfterVictory = [
+"Well, I'll be—miracles do happen. Victory's yours, champ.",
+"Miracles don’t come cheap, but you cashed in today.",
+"Victory suits you. Barely.",
+"Guess that wasn’t dumb luck after all."
+];
+
+const leftKnightHeadAfterTie = [
+"A tie? What an exciting waste of time.",
+"A tie? Thrilling. Shall we hold hands and skip off into the sunset?",
+"This tie's about as satisfying as cold porridge.",
+"Well, that was a magnificent waste of effort."
+];
+
+const leftKnightHeadAfterDefeat = [
+"Ha! I saw that coming from a mile away.",
+"Should’ve stuck to knitting.",
+"I’d say ‘better luck next time,’ but who are we kidding?",
+"Defeat suits you. Wear it proudly.",
+"I’d offer advice, but I enjoy watching you fail.",
+"You fumbled harder than a jester on stilts.",
+"Next time, maybe try swinging your weapon upright.",
+"A loss well-earned. Bravo, truly."
+];
+
+//arm lines
+const leftKnightArmsBefore = [
+"Touch the arm, eh? Hoping some strength will rub off? Fat chance.",
+"Touch all you like; strength ain’t contagious.",
+"What, expecting a flex? Dream on."
+];
+
+const leftKnightArmsDuring = [
+"A fine arm for swinging... but it's mine, not yours.",
+"Careful, you might sprain your imagination.",
+"Careful now — don’t get too attached to this fine arm.",
+"That’s close enough unless you're proposing.",
+"Easy there, it’s not a handshake competition."
+];
+
+const leftKnightArmsAfterVictory = [
+ "Guess that arm of yours isn’t entirely useless.",
+ "Well, well, you actually used those arms for something useful.",
+ "Miracles do happen. Guess that arm of yours isn't just for decoration.",
+ "Managed to swing straight, eh? Good for you.",
+ "Well, well, looks like you can put those arms to work.",
+ "Victory thanks to those noodles you call arms. Remarkable.",
+ "Guess brute force occasionally works, even for you."
+];
+
+const leftKnightArmsAfterTie = [
+"A draw? Riveting stuff. Absolutely riveting.",
+"At least our arms are well-rested from all the nothing.",
+"Call it balanced, call it boring. Same thing, really.",
+"At least neither of us embarrassed ourselves. This time.",
+"Neither win nor loss — a true testament to mediocrity."
+];
+
+const leftKnightArmsAfterDefeat = [
+"Maybe practice swinging that arm of yours... someday.",
+"Maybe use those arms for waving a white flag next time.",
+"Flailing isn’t a strategy, but hey, you tried.",
+"Better luck next lifetime, champ."
+];
+
+//groin lines
+const leftKnightGroinBefore = [
+"Oi! This isn’t that kind of tournament!",
+"Personal space, ever heard of it?",
+"Touch me there again, and we’re dueling.",
+"Oi! Hands off the goods, thank you.",
+"Bold move — unwise, but bold.",
+"I think you're reaching for the wrong kind of sword"
+];
+
+const leftKnightGroinDuring = [
+"Still?! You're bold, I'll give you that.",
+"Persistent, aren’t you? Annoyingly so.",
+"You’ve got nerve, I’ll give you that.",
+"Look, I’m flattered, but this is getting weird.",
+"Still at it? You’ve got guts, I’ll give you that."
+];
+
+const leftKnightGroinAfterVictory = [
+"Whatever works, I guess. Not judging.",
+"Victory and scandal in one — you're a real overachiever.",
+"Is that your lucky charm, or are do you just like me that much?",
+"Well, well, aren’t we daring today?",
+"Well, you certainly made an impression... down there.",
+"Your strategy is questionable, but effective."
+];
+
+const leftKnightGroinAfterTie = [
+"A tie? About as satisfying as this jab. Wonderful.",
+"Next time, dinner first, perhaps?",
+"Neither of us comes out a champion, but you sure made it memorable.",
+"Stalemate? At least you're consistent with poor decisions.",
+"If this was a strategy, I’d love to hear the explanation.",
+"Next time, let's skip the jabs and go straight for the drinks."
+];
+
+const leftKnightGroinAfterDefeat = [
+"If misery loves company, my groin's feeling awfully friendly.",
+"Next time, maybe aim higher — metaphorically.",
+"Defeat stings, but you seem to enjoy it.",
+"If you're trying to distract me, it's working.",
+"That’s one way to soften the blow of losing.",
+"Well, you certainly had fun, didn’t you?"
+];
+
+//legs lines
+const leftKnightLegsBefore = [
+"Legs of steel, these. Don't need your approval, though.",
+"Yep, still got two of 'em.",
+"Planning on writing a poem about my calves?",
+"These legs are made for marching, not gawking."
+];
+
+const leftKnightLegsDuring = [
+"Marching to victory — or disgrace. Who knows?",
+"One foot in front of the other... barely."
+];
+
+const leftKnightLegsAfterVictory = [
+"Stepping up in the world, eh? Well done.",
+"Looks like we actually got somewhere. Shocking.",
+"Well, I’ll be — victory’s within our stride.",
+"Stepped up and didn’t trip. Huzzah."
+];
+
+const leftKnightLegsAfterTie = [
+"Standing still, going nowhere. Sounds about right.",
+"Treading water, but on land.",
+"What a graceful display of going nowhere.",
+"Standing still never looked so pointless.",
+"Legwork without results. Thrilling.",
+"Neither advancing nor retreating. Perfect limbo."
+];
+
+const leftKnightLegsAfterDefeat = [
+"Tripped at the finish line, did we? Happens to the best.",
+"Flat on our backs, huh? Typical.",
+"Better luck next time, assuming you can stand.",
+"Try walking upright next time.",
+"Fell flat, eh? Hope the ground was comfy.",
+"Well, that was a graceful tumble.",
+"Better luck next time — if you can get up, that is.",
+"On the bright side, falling builds character."
+];
+
+
+//right knight lines
+//head lines
+const rightKnightHeadBefore = [
+"Ah, you honor me, good traveler... oh, did I bow too low? I may have strained my neck.",
+"Ah, my good traveler, you've caught me daydreaming again.",
+"My helm may gleam, but does it inspire courage?",
+"You honor me with your attention, though I blush beneath this helm."
+];
+
+const rightKnightHeadDuring = [
+"The tension mounts. Do you think my helm looks crooked?",
+"Steady now, my focus wavers under such scrutiny.",
+"Does my helm glint too brightly for your eyes?",
+"I shall endeavor to stay composed under your gaze."
+];
+
+const rightKnightHeadAfterVictory = [
+"Victory! By your valor, we stand triumphant! Forgive me, I may need to sit — my head spins with pride.",
+"A triumph worthy of song! Though perhaps a quiet one...",
+"Victory fills my heart, though modesty bids me hide it.",
+"Huzzah! Erm... was that too loud?"
+];
+
+const rightKnightHeadAfterTie = [
+"A draw, as balanced as the scales of fate.",
+"A balance, as fate decrees. Perhaps a sign of harmony?",
+"A tie — neither triumph nor defeat, yet noble all the same.",
+"We stand on equal footing with our noble adversary."
+];
+
+const rightKnightHeadAfterDefeat = [
+"A humbling defeat... but every noble heart learns from adversity.",
+"Defeat humbles us, but we rise stronger, do we not?",
+"Every knight must taste defeat to grow wiser.",
+"I bow to our better. Next time, courage shall not falter."
+];
+
+//arm lines
+const rightKnightArmsBefore = [
+"A sturdy arm, I hope... though I wouldn’t boast.",
+"Prepared to defend, though perhaps a bit tremulous.",
+"May this arm serve honorably, though I remain humble.",
+"I lend my strength to your cause, such as it is.",
+"A steady arm, if not a remarkable one."
+];
+
+const rightKnightArmsDuring = [
+"I lend thee my resolve, such as it is.",
+"Steady now, strength lies in resolve.",
+"A firm grip, though trembling slightly..."
+];
+
+const rightKnightArmsAfterVictory = [
+"We triumphed! A toast to teamwork... perhaps with juice?",
+"Glory through valor! My arm feels lighter now.",
+"We triumphed, though I must thank fate as well as strength.",
+"Glory is ours! I shall cherish this moment quietly, of course.",
+"We prevailed! I must confess, my arm did not tremble this time.",
+"Glory be! Though I must credit your valor more than my arm.",
+"Our combined strength brought us triumph!"
+];
+
+const rightKnightArmsAfterTie = [
+"A contest most evenly matched! Erm... a handshake, perhaps?",
+"An even match! Shall we clasp hands in respect?",
+"Neither forward nor backward, yet we remain steadfast.",
+"A noble contest, if inconclusive."
+];
+
+const rightKnightArmsAfterDefeat = [
+"Next time, I shall lend even firmer resolve... or at least, a steadier grip.",
+"Defeat only steels my resolve.",
+"We faltered, but honor remains."
+];
+
+//groin lines
+const rightKnightGroinBefore = [
+"I... um... surely that was unintended? We shan't speak of this.", //add blush effect
+"Ahem! That’s quite forward, milord!",
+"I... um... can we pretend that didn’t happen?"
+];
+
+const rightKnightGroinDuring = [
+"In the heat of battle, decorum remains... mostly... intact.", //add blush
+"Ahem, that’s a rather bold maneuver.",
+"In battle, all focus must remain pure..."
+];
+
+const rightKnightGroinAfterVictory = [
+"Ahem... Even such moments can lead to triumph, I suppose.",
+"We stand victorious, despite certain... awkward tactics.",
+"Um... huzzah? Let’s pretend this never happened.",
+"Triumph, even in moments best left unspoken.",
+"Well... I suppose all is fair in love and tournaments?",
+"Victory is sweet, though embarrassment lingers.",
+"Triumph, though I shall blush for days.",
+"Ahem... Victory, despite the rather unconventional tactics."
+];
+
+const rightKnightGroinAfterTie = [
+"Ahem... Let’s not dwell on how near that was.",
+"Well, that was... memorable.",
+"A tie, close in more ways than one.",
+"We remain even, though dignity wavers.",
+"A draw, though I shall remember this for... reasons.",
+"Neither triumph nor defeat, but plenty of blushes."
+];
+
+const rightKnightGroinAfterDefeat = [
+"Defeat is not the only embarrassment today, alas.", //blush
+"A double loss, both in combat and decorum.",
+"Ahem... I shall endure this indignity with grace.",
+"Embarrassment and defeat — a humbling day indeed.",
+"Ah... we lost, and dignity suffers still.",
+"Defeat is humbling, as is this entire situation.",
+"Defeat stings, but perhaps not as much as this moment."
+];
+
+//legs lines
+const rightKnightLegsBefore = [
+"Steady legs, though my knees may knock under scrutiny.",
+"Prepared to march forth, though my step may falter."
+];
+
+const rightKnightLegsDuring = [
+"Ready to march forth, though my gait may falter under such pressure.",
+"A valiant stride, though wobbly under such pressure.",
+"I march with purpose, though nerves weigh heavy.",
+"Each step taken with honor, if not confidence."
+];
+
+const rightKnightLegsAfterVictory = [
+"Victory lifts even the heaviest step!",
+"Steady strides led us to triumph! Onward!",
+"Our legs carried us well today, noble champion."
+];
+
+const rightKnightLegsAfterTie = [
+"We held steady, neither advancing nor retreating.",
+"We held our ground, neither retreating nor advancing.",
+"A noble stalemate, steadfast and true.",
+"No step forward, yet no ground lost."
+];
+
+const rightKnightLegsAfterDefeat = [
+"Our steps faltered, but we shall rise anew.",
+"Defeat is heavy, but I shall march on.",
+"A stumble today, but tomorrow holds steadier ground."
+];
+
+
+const knightLines = {
+    left: {
+        before: {
+            head: leftKnightHeadBefore,
+            arms: leftKnightArmsBefore,
+            groin: leftKnightGroinBefore,
+            legs: leftKnightLegsBefore
+        },
+        during: {
+            head: leftKnightHeadDuring,
+            arms: leftKnightArmsDuring,
+            groin: leftKnightGroinDuring,
+            legs: leftKnightLegsDuring
+        },
+        afterVictory: {
+            head: leftKnightHeadAfterVictory,
+            arms: leftKnightArmsAfterVictory,
+            groin: leftKnightGroinAfterVictory,
+            legs: leftKnightLegsAfterVictory
+        },
+        afterTie: {
+            head: leftKnightHeadAfterTie,
+            arms: leftKnightArmsAfterTie,
+            groin: leftKnightGroinAfterTie,
+            legs: leftKnightLegsAfterTie
+        },
+        afterDefeat: {
+            head: leftKnightHeadAfterDefeat,
+            arms: leftKnightArmsAfterDefeat,
+            groin: leftKnightGroinAfterDefeat,
+            legs: leftKnightLegsAfterDefeat
+        }
+    },
+    right: {
+        before: {
+            head: rightKnightHeadBefore,
+            arms: rightKnightArmsBefore,
+            groin: rightKnightGroinBefore,
+            legs: rightKnightLegsBefore
+        },
+        during: {
+            head: rightKnightHeadDuring,
+            arms: rightKnightArmsDuring,
+            groin: rightKnightGroinDuring,
+            legs: rightKnightLegsDuring
+        },
+        afterVictory: {
+            head: rightKnightHeadAfterVictory,
+            arms: rightKnightArmsAfterVictory,
+            groin: rightKnightGroinAfterVictory,
+            legs: rightKnightLegsAfterVictory
+        },
+        afterTie: {
+            head: rightKnightHeadAfterTie,
+            arms: rightKnightArmsAfterTie,
+            groin: rightKnightGroinAfterTie,
+            legs: rightKnightLegsAfterTie
+        },
+        afterDefeat: {
+            head: rightKnightHeadAfterDefeat,
+            arms: rightKnightArmsAfterDefeat,
+            groin: rightKnightGroinAfterDefeat,
+            legs: rightKnightLegsAfterDefeat
+        }
+    }
+}
+
 const iconSpokenLines = {
     mage: { 
         hover: mageHover,
@@ -359,6 +749,8 @@ const iconSpokenLines = {
         unclick: jesterUnClickLots
     }
 }
+
+
 
 const iconTalking = document.createElement("div");
 let timeouts = [];
@@ -443,15 +835,16 @@ fontButton.addEventListener("click", () => {
     if (mageClickCounter % 2 === 0) { //re-enables the default font
         document.documentElement.style.setProperty('--title-size', '4.5vw');
         document.documentElement.style.setProperty('--action-title-size', '3.5vw');
-        document.documentElement.style.setProperty('--action-text-size', '2vw');
+        document.documentElement.style.setProperty('--action-text-size', '1.8vw');
         document.documentElement.style.setProperty('--action-text-button', '2vw');
         document.documentElement.style.setProperty('--score-size', '5vw');
         document.documentElement.style.setProperty('--name-size', '4vw');
         document.documentElement.style.setProperty('--select-size', '2.5vw');
         document.documentElement.style.setProperty('--talking-block-size', '2vw');
+        document.documentElement.style.setProperty('--talking-bubble-size', '1.8vw');
         talk("mage", "unclick");
     } else { //sets the alternative font
-            document.documentElement.style.setProperty('--title-size', '3.5vw');
+            document.documentElement.style.setProperty('--title-size', '3.8vw');
             document.documentElement.style.setProperty('--action-title-size', '3vw');
             document.documentElement.style.setProperty('--action-text-size', '1.5vw');
             document.documentElement.style.setProperty('--action-text-button', '1.5vw');
@@ -459,6 +852,7 @@ fontButton.addEventListener("click", () => {
             document.documentElement.style.setProperty('--name-size', '3vw');
             document.documentElement.style.setProperty('--select-size', '2vw');
             document.documentElement.style.setProperty('--talking-block-size', '1.5vw');
+            document.documentElement.style.setProperty('--talking-bubble-size', '1.5vw');
             talk("mage", "unclick");
         }
     });
@@ -512,6 +906,7 @@ function tournamentFinal() {
     actionButton.hidden = false;
     tournamentActive = true;
     textSelector.remove();
+    tournamentsPlayed++;
     
     chosenMove.forEach((button) => {
         button.classList.add('disabled'); // Add a 'disabled' class to prevent interaction
@@ -522,12 +917,16 @@ function tournamentFinal() {
 
     if (gameState.playerWon > gameState.playerLost) {
         tournamentHelper(finalVictory, "Victory!");
+        gameState.tournamentOutcome = "Victory";
     } else if (gameState.playerWon < gameState.playerLost) {
         tournamentHelper(finalDefeat, "Defeat...");
+        gameState.tournamentOutcome = "Defeat";
     } else if (gameState.playerWon === gameState.playerLost) {
         tournamentHelper(finalTie, "Tie");
+        gameState.tournamentOutcome = "Tie";
     } else if (gameState.tieCount === 5) {
         tournamentHelper(finalAllTie, "Tie?");
+        gameState.tournamentOutcome = "Tie";
     } else {
         actionText.textContent = "Milord! Thy contraption hath broken";
     }
@@ -596,6 +995,7 @@ actionButton.addEventListener("click", () => {
     gameState.playerWon = 0;
     gameState.playerLost = 0;
     gameState.matchesPlayed = 0;
+    gameState.tournamentOutcome = null;
 
     tieCounterScore.textContent = gameState.tieCount;
     playerCounterScore.textContent = gameState.playerWon;
@@ -605,4 +1005,43 @@ actionButton.addEventListener("click", () => {
 
     actionButton.hidden = true;
 });
+
+const rightKnightButtons = document.querySelectorAll(".right-knight-buttons button");
+const leftKnightButtons = document.querySelectorAll(".left-knight-buttons button");
+const rightKnightBubble = document.querySelector(".right-knight-bubble");
+const leftKnightBubble = document.querySelector(".left-knight-bubble");
+
+function squire (placement, part) {
+    let time;
+
+    if (gameState.matchesPlayed === 0) {
+        time = "before"; 
+    } else {
+        time = tournamentActive ? `after${gameState.tournamentOutcome}` : "during";
+    }
+
+    spokenLine = randomize(knightLines[placement][time][part]);
+    const knightBubble = placement === "right" ? rightKnightBubble : leftKnightBubble;
+    knightBubble.textContent = spokenLine;
+
+}
+
+function parting (event) {
+    const partId = event.currentTarget.getAttribute("id");
+    const part = partId.split("-")[1];
+    return part;
+}
+
+rightKnightButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        squire("right", parting(event));
+});
+      });
+
+
+leftKnightButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        squire("left", parting(event));
+}); 
+      });
 

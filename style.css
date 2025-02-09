@@ -15,12 +15,13 @@
 :root {
     --title-size: 4.5vw;
     --action-title-size: 3.5vw;
-    --action-text-size: 2vw;
+    --action-text-size: 1.9vw;
     --action-button-size: 2vw;
     --score-size: 5vw;
     --name-size: 4vw;
     --select-size: 2.5vw;
     --talking-block-size: 2vw;
+    --talking-bubble-size: 1.8vw;
   }
 
 html,
@@ -73,6 +74,7 @@ body {
 .rightside-block {
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
     width: 20%;
     height: 100%;
@@ -141,13 +143,12 @@ button {
     height: 10vw;
     min-height: 150px; 
     /* margin-top: 2%; */
-    padding: 2% 2%;
+    padding: 1% 1.5%;
     overflow: hidden;
 }
 
 .action-title {
     font-size: var(--action-title-size);
-    /* position: absolute; */
 }
 
 .action-text {
@@ -243,9 +244,63 @@ button {
     border-radius: 3%;
 }
 
+.right-knight-buttons,
+.left-knight-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-knight-buttons button,
+.left-knight-buttons button {
+    background-color: transparent;
+    z-index: 2;
+}
+
+#right-head,
+#left-head {
+    border: solid yellow;
+    width: 5vw; 
+    height: 5vw;
+}
+
+#right-arms,
+#left-arms {
+    border: solid red;
+    width: 15vw; 
+    height: 7vw;
+}
+
+#right-groin,
+#left-groin {
+    border: solid purple;
+    width: 8vw; 
+    height: 5vw;
+}
+
+#right-legs,
+#left-legs {
+    border: solid blue;
+    width: 8vw; 
+    height: 10vw;
+}
+
+#right-arms {
+    height: 6vw;
+}
+
+#right-groin {
+    height: 4vw;
+}
+
+#right-legs {
+    height: 11vw;
+}
+
+
+
 .select {
     font-size: var(--select-size); 
-    position: absolute;
 }
 
 .blink {
@@ -273,6 +328,14 @@ button {
     font-family: "Medieval-Readable";
 }
 
+.right-knight-bubble,
+.left-knight-bubble {
+    position: absolute;
+    align-self: flex-start;
+    padding: 5%;
+    font-size: var(--talking-bubble-size);
+}
+
 @media screen and (max-width: 1200px) {
     .select {
         font-size: 3vw;
@@ -283,7 +346,7 @@ button {
     }
 
     .action-text {
-        font-size: 2.5vw;
+        font-size: 2vw;
     }
 
     button {
@@ -301,7 +364,7 @@ button {
     }
 
     .action-text {
-        font-size: 3vw;
+        font-size: 2.6vw;
     }
 
     button {
