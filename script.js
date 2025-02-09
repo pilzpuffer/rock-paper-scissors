@@ -252,6 +252,7 @@ const finalAllTie = [
 ];
 
 
+
 //icon lines - mage
 const mageHover = [
 "An incantation for readability awaits thy click.",
@@ -283,7 +284,7 @@ const mageClickLots = [
 "Back again? Dost thou think I’m a common scribe for thy whims?",
 "By the stars! Do ye take joy in tormenting this poor mage?",
 "Art thou conducting some experiment on mine patience?",
-"This hath become a farce most tiresome—yet here I am!"
+"This hath become a farce most tiresome — yet here I am!"
 ];
 
 const mageUnClickLots = [
@@ -292,6 +293,7 @@ const mageUnClickLots = [
 "Oh, verily — this is the fifth time today. What next, invisible ink?",
 "A dance betwixt fonts? Mayhap I should charge admission."
 ];
+
 
 //icon lines - jester
 const jesterHover = [
@@ -335,6 +337,7 @@ const jesterUnClickLots = [
 "Ah, the music fades again! I shall mourn… until thy next whim!",
 "A sad jester am I, toggled like a mere bell-pull."
 ];
+
 
 //knight lines
 
@@ -786,10 +789,6 @@ function talk(selectedLine, parameter) {
 
     talkingBlock.appendChild(iconTalking);
 
-    for (let i = 0; i < timeouts.length; i++) {
-        clearTimeout(timeouts[i]);
-    }
-
     clearUpTimeouts();
     timeouts.push(setTimeout(function() {
         iconTalking.remove();
@@ -853,7 +852,7 @@ fontButton.addEventListener("click", () => {
             document.documentElement.style.setProperty('--select-size', '2vw');
             document.documentElement.style.setProperty('--talking-block-size', '1.5vw');
             document.documentElement.style.setProperty('--talking-bubble-size', '1.5vw');
-            talk("mage", "unclick");
+            talk("mage", "click");
         }
     });
 
@@ -1023,6 +1022,11 @@ function squire (placement, part) {
     spokenLine = randomize(knightLines[placement][time][part]);
     const knightBubble = placement === "right" ? rightKnightBubble : leftKnightBubble;
     knightBubble.textContent = spokenLine;
+
+    clearUpTimeouts();
+    timeouts.push(setTimeout(function() {
+        knightBubble.textContent = "";
+    }, 4000))
 
 }
 

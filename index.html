@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS Tournament</title>
     <link href="style.css" rel="stylesheet"/>
+    <script src="load.js" async></script> 
     <script src="script.js" defer></script> 
 </head>
 <body>
+    <div class="loader-container">
+        <img src="./icons/knight-gallop.gif" alt="Loading knight" class="loader-image">
+      </div>
+
     <div class="content-wrapper">
         <div class="leftside-block">
             <img src="./side-blocks/knight-left.webp" class="knight-left">
-            <div class="left-knight-bubble">TESTING!</div>
+            <div class="left-knight-bubble"></div>
 
             <div class="left-knight-buttons">
                 <button id="left-head"></button>
