@@ -115,7 +115,7 @@ const paperTies = [
 "Matching spells, matching disappointment. Truly, thou dost tease but fail to enchant.",
 "Oh, thou conjureth matching spells? How delightfully synchronized. Mayhap ye should hold hands next time.",
 "Matching spells and naught but sparks? One wonders if thou art as underwhelming elsewhere.",
-"Thy scroll and the foe’s fizzle in harmony—truly, a duet of disappointment.",
+"Thy scroll and the foe’s fizzle in harmony — truly, a duet of disappointment.",
 "Two arcane flops colliding. Perchance thou seeketh a better match for thy magic?"
 ];
 
@@ -124,7 +124,7 @@ const paperLoss = [
 "Swift steel rends thy parchment asunder. Perhaps thou ought to cover thy vulnerabilities more carefully?",
 "Thy spell is cut down most decisively. Mayhap wielding a scroll leaves thee a bit... open.",
 "Thy scroll lies in tatters, a cautionary tale for those too quick to reveal their magic.",
-"Oh dear, thy scroll is torn to shreds! Perhaps thou should stick to simpler enchantments—like impressing tavern maids.",
+"Oh dear, thy scroll is torn to shreds! Perhaps thou should stick to simpler enchantments — like impressing tavern maids.",
 "Thy spell fizzles under the foe’s blades. One hopes thou art not so easily cut down elsewhere.",
 "A grim fate! Thy spell lies in tatters. One wonders if thy magical prowess is merely for show.",
 "Curses! Thy parchment is no more. One hopes thou art less fragile in other pursuits."
@@ -132,9 +132,9 @@ const paperLoss = [
 
 const paperWin = [
 "With a flourish of arcane mastery, thou dost unravel the foe’s defenses. One hopes thy prowess extends beyond mere scrollwork.",
-"Thy enchanted parchment leaves the foe defenseless. A dazzling show—though perhaps thou enjoy putting others on their knees?",
+"Thy enchanted parchment leaves the foe defenseless. A dazzling show — though perhaps thou enjoy putting others on their knees?",
 "A spell well-cast! The foe is left speechless, likely wondering what else thou might conjure.",
-"Thy sorcery overwhelms the foe. A triumph most magical—pray tell, do thou always leave such an impression?",
+"Thy sorcery overwhelms the foe. A triumph most magical — pray tell, do thou always leave such an impression?",
 "Thy enchanted scroll leaves the foe exposed and trembling. One wonders if all thy performances leave others so vulnerable.",
 "With but a flick of parchment, thou hath disarmed the foe. Perhaps thy foes should brace themselves better for such wizardry.",
 "A spell well-cast! The foe falters, left in awe of thy commanding presence — though who could blame them?",
@@ -164,7 +164,7 @@ const scissorsLoss = [
 ];
 
 const scissorsWin = [
-"Thy blade flashes true, cutting down the foe's petty magic. Swift, sharp, and satisfying—one imagines thou art a favorite at court.",
+"Thy blade flashes true, cutting down the foe's petty magic. Swift, sharp, and satisfying — one imagines thou art a favorite at court.",
 "Like a lover scorned, thou dost shred the foe’s parchment with ruthless precision. A victory most cutting!",
 "Thy nimble blades dance and slice with elegance. One wonders if thou art as deft in all pursuits.",
 "A dazzling display of steel! The foe is left in tatters — mayhaps they’ll think twice before crossing thee again.",
@@ -210,32 +210,32 @@ const rockWin = [
 //tournament resolutions
 const finalVictory = [
 "Huzzah! Thou hath bested the foe in five fierce bouts. Thy mastery is unmatched — though one wonders if thou enjoy being admired so much.",
-"Rejoice, noble champion! Thy triumph is the stuff of legends—and possibly tavern gossip.",
+"Rejoice, noble champion! Thy triumph is the stuff of legends — and possibly tavern gossip.",
 "A glorious victory! The bards shall sing of thy cunning and courage, though mayhap they’ll leave out the blushing admirers.",
 "Thou hath conquered all! Thy deeds shall echo through the realm, though one suspects thy ego needs no help with that.",
 "Huzzah! Thy triumph is undisputed, though one imagines thou art quite accustomed to basking in such admiration.",
-"Rejoice, noble champion! Thy foes have fallen before thee—one wonders who shall fall next under thy spell.",
+"Rejoice, noble champion! Thy foes have fallen before thee — one wonders who shall fall next under thy spell.",
 "A victory most glorious! Thy deeds shall be sung far and wide, though mayhap some verses shall be whispered in private.",
-"Thou hath conquered all! Thy mastery is unmatched—though one suspects thou enjoyeth being told as much."
+"Thou hath conquered all! Thy mastery is unmatched — though one suspects thou enjoyeth being told as much."
 ];
 
 const finalDefeat = [
 "The foe hath triumphed, leaving thee humbled yet undaunted. Mayhap thou art used to bouncing back from such entanglements.",
 "Defeated, but not broken! Thy valor remains intact — along with thy tendency to linger where thou art bested.",
 "Though the foe stands victorious, thy spirit doth remain unyielding. Verily, thou art persistent if naught else.",
-"Alack! Thy defeat is assured—but then, mayhap thou art accustomed to such humbling encounters.",
+"Alack! Thy defeat is assured — but then, mayhap thou art accustomed to such humbling encounters.",
 "The foe hath bested thee, leaving thy pride in tatters. One hopes thou art as graceful in defeat as in pursuit.",
 "Thy shield is shattered, thy blade dulled — but despair not! One imagines thou art adept at bouncing back from such disappointments.",
 "Defeat is thine, yet thy spirit remains unbroken. One wonders if thou art simply too stubborn to quit."
 ];
 
 const finalTie = [
-"A nail-biting contest! Neither thou nor the foe emerges victorious—though I suspect both of ye secretly enjoyed the back-and-forth.",
+"A nail-biting contest! Neither thou nor the foe emerges victorious — though I suspect both of ye secretly enjoyed the back-and-forth.",
 "Neither thy cunning nor the foe’s could tip the scales. Perhaps next time thou might charm fate itself?",
 "A stalemate most curious! Mayhap thou both lingered a touch too long, unwilling to let the fray end.",
 "Neither victorious nor defeated. One wonders if thou art simply prolonging the encounter for reasons best left unsaid.",
 "A fierce contest ends in stalemate. One wonders if thou art simply prolonging the encounter for thine own amusement.",
-"Neither victorious nor vanquished—mayhap thou enjoyeth keeping the foe in suspense?",
+"Neither victorious nor vanquished — mayhap thou enjoyeth keeping the foe in suspense?",
 "A stalemate most curious! Perchance thou both enjoy dancing this close to victory without claiming it.",
 "Neither side prevails, though one imagines both of ye savor the tension."
 ];
@@ -248,7 +248,7 @@ const finalAllTie = [
 "Five ties? One might suspect thou and the foe enjoy these endless entanglements a touch too much.",
 "Five ties in a row? Surely fate itself blushes at thy prolonged dance with the foe.",
 "By the gods! Five ties? One wonders if thou art courting the foe instead of defeating them.",
-"Five ties—surely this doth border on flirtation. Pray, sort out thy affections and claim victory next time."
+"Five ties — surely this doth border on flirtation. Pray, sort out thy affections and claim victory next time."
 ];
 
 
@@ -359,7 +359,7 @@ const leftKnightHeadDuring = [
 ];
 
 const leftKnightHeadAfterVictory = [
-"Well, I'll be—miracles do happen. Victory's yours, champ.",
+"Well, I'll be — miracles do happen. Victory's yours, champ.",
 "Miracles don’t come cheap, but you cashed in today.",
 "Victory suits you. Barely.",
 "Guess that wasn’t dumb luck after all."
@@ -834,7 +834,7 @@ const rightKnightFriendUnlock = [
 
 const rightKnightFoeUnlock = [
 "You test my patience with the zeal of a jester. Alas, the joust is no joke.",
-"Honor demands I tolerate you—but my patience wears thin.",
+"Honor demands I tolerate you — but my patience wears thin.",
 "You tread dangerously close to dishonor. Desist!",
 "A knight defends virtue, not indulges your foolishness.",
 "I am bound by chivalry, though you test its very limits.",
