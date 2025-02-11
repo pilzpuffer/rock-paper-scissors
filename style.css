@@ -346,7 +346,7 @@ button {
 .left-knight-bubble {
     position: absolute;
     align-self: flex-start;
-    padding: 5%;
+    padding: 15%;
     font-size: var(--talking-bubble-size);
 }
 

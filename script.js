@@ -69,8 +69,7 @@ const gameState = {
   enemyChoice: null,
   matchesPlayed: 0,
   tournamentsPlayed: 0,
-  tournamentOutcome: null,
-  knightsClicked: false
+  tournamentOutcome: null
 };
 
 const validMove = ["rock", "paper", "scissors"];
@@ -711,7 +710,10 @@ const leftKnightFriendAfterVictory = [
 "I guess having a partner in crime ain't so bad.",
 "Well, well, look who triumphed — with me reluctantly in their corner.",
 "Guess my begrudging advice actually helped. You're welcome.",
-"Victory by association, eh? Don't expect a parade from me."
+"Victory by association, eh? Don't expect a parade from me.",
+"We make quite the team, don’t we? Even if I won't admit it.",
+"Well, color me impressed — we actually pulled this off.",
+"A win’s a win, and somehow, I’m okay with sharing it with you."
 ];
 
 const leftKnightFriendAfterTie = [
@@ -719,7 +721,12 @@ const leftKnightFriendAfterTie = [
 "A stalemate? At least it’s less dull with you around.",
 "Neither of us got glory, but hey, I’ve had worse company.",
 "We broke even — good enough, I suppose.",
-"Looks like you managed mediocrity with flair."
+"Looks like you managed mediocrity with flair.",
+"A tie — but having you around makes it feel like less of a loss.",
+"We’re both equally unremarkable. Feels like success, right?",
+"A tie? Yeah, I’ll let it slide. You’re alright, for now.",
+"If nothing else, we can both say we didn’t completely embarrass ourselves.",
+"I’d rather share this draw with you than anyone else."
 ];
 
 const leftKnightFriendAfterDefeat = [
@@ -727,50 +734,88 @@ const leftKnightFriendAfterDefeat = [
 "Lost, huh? I’d gloat, but misery shared is... tolerable.",
 "Well, that went downhill. At least we crashed together.",
 "I told you not to listen to me. Glad we cleared that up.",
-"Next time, maybe I'll care more. Probably not, though."
+"Next time, maybe I'll care more. Probably not, though.",
+"Not our best performance, but you’ve got me around, so it’s not all bad.",
+"We failed, but at least I can blame you now. Teamwork, right?",
+"We lost, but I’ll still probably stick with you. Maybe.",
+"You know what they say — failure’s sweeter with company. Not really, but whatever.",
+"At least I’m not alone in the mud. That’s something, right?"
 ];
 
 const leftKnightFlingAfterVictory = [
-"A champion and a charmer? Don’t let it go to your head.",
 "I begrudgingly admit... you’re not awful to have around.",
-"Victory's sweet, but your company ain't half bad either.",
 "Don’t think this victory means I’ll swoon. Well, maybe a little.",
-"What say we conquer a tavern next?"
+"What say we conquer a tavern next?",
+"Okay, I admit it — you’ve got your moments. Don’t get used to it.",
+"Guess I’ll let you stick around a bit longer. You’re not awful after all.",
+"A champion and a charmer? Don’t let it go to your head, but damn... maybe I’ll let you keep the crown.",
+"Okay, fine — you’re not the worst person to celebrate with... but I’m still not swooning.",
+"Don’t think this win means I’m swooning... maybe a tiny bit. But don’t get used to it.",
+"What say we conquer a tavern next? Or should I just follow you around like a lovesick puppy?",
+"Alright, alright... I admit it. You’re not as insufferable as I thought. For now.",
+"Fine, you’ve earned yourself another round. Let’s see how long this ‘victory’ lasts with you around.",
+"Maybe you’re not so bad after all. Just don’t expect me to start gushing over you. Well... not yet."
 ];
 
 const leftKnightFlingAfterTie = [
-"Neither of us won, but I’ll let you stick around.",
-"A draw, but it’s less bitter with you here.",
-"Guess I’ll share this stalemate. Don’t make it weird.",
-"Tie or not, you’re almost charming. Almost."
+"Neither of us won, but I guess I’ll let you hang around a bit longer. Don't get too comfy.",
+"A draw... not the worst thing. Especially with you here to keep me entertained.",
+"You know, this stalemate would’ve been way worse without you making it... bearable. Almost fun, even.",
+"A tie’s not the best, but I’ll take it as long as I’ve got you to annoy me.",
+"Guess it’s a draw... but hey, at least you’re here to keep things interesting. Lucky for you.",
+"We didn’t win, but I didn’t have to suffer this by myself. I’ll let you stay for that.",
+"If we’re gonna tie, at least you’re here to make this slightly less torturous.",
+"Even with a tie, I can’t help but feel like you’re the highlight. Don’t let it go to your head.",
+"Tie or not, you’re almost charming. Almost.",
+"We’re neither victorious nor defeated. But you’re tolerable enough.",
+"A tie? Fine, I guess you’re not the worst company for it."
 ];
 
 const leftKnightFlingAfterDefeat = [
-"Defeat stings less when you're here—not that I’m admitting anything.",
-"Yeah, we lost... but you’re decent company, I suppose.",
-"At least I didn’t lose alone. Silver linings, huh?",
-"Turns out defeat is tolerable with someone like you hanging around."
+"Defeat stings a bit less when you’re around. Not that I’m admitting anything... but you’re tolerable.",
+"Yeah, we lost... but you’re still pretty good company. For now.",
+"I guess losing’s not the worst when I get to hang out with you. Lucky me.",
+"Turns out defeat’s a little easier to take when I’ve got someone like you distracting me.",
+"Well, defeat’s not so bad when you’re here trying to cheer me up... But don’t think this means anything.",
+"We lost, but at least you’re not making it worse. For now, you’re the lesser of two evils.",
+"Yeah, we didn’t win, but at least I’ve got you to keep me entertained. I guess I’ll survive.",
+"You owe me a drink after that defeat. Make it worth my while, will ya?",
+"Losing’s not so bad when I’m not doing it alone. But you’re still not off the hook for this one.",
+"We didn’t win, but I guess I don’t mind sharing the misery with you. Just this once."
 ];
 
 const leftKnightCreepAfterVictory = [
 "Well, we won. Too bad your honor’s nowhere to be found.",
 "Victory and severe discomfort — what a combination.",
 "I’ll take the win, but please keep your… tendencies in check.",
-"We’re victorious, but I’m gonna need therapy after this."
+"We’re victorious, but I’m gonna need therapy after this.",
+"Victory’s great, but now I’m questioning everything. Especially you.",
+"I don’t know what’s worse — the victory or the way you’re acting.",
+"We won, but you’ve managed to make it a nightmare.",
+"I’m not sure who won more today: us, or the awkwardness you bring.",
+"A win, but I’m seriously reconsidering my life choices right now."
 ];
 
 const leftKnightCreepAfterTie = [
 "A stalemate, fitting for your questionable decisions.",
 "Neither of us won, but I definitely lost my dignity.",
 "A tie — and you’re still the weirdest thing I’ve encountered today.",
-"We break even, though your behavior remains... unsettling."   
+"We break even, though your behavior remains... unsettling.",
+"A draw, and I’m still trying to figure out how I ended up here.",
+"We’re both equally unimpressive. But you’re way more creepy.",
+"A tie is one thing, but your actions? That’s another matter.",
+"I’d say we’re even, but I’m still stuck on how uncomfortable you made me.",
+"We tied, but I’ll never get over your weirdness."   
 ];
 
 const leftKnightCreepAfterDefeat = [
 "We lost, probably because I was too busy dodging your hands.",
 "Defeat stings less than your wandering interests.",
 "Maybe we’d win if you focused on fighting instead of fondling.",
-"We were doomed from the start — thanks to you." 
+"We were doomed from the start — thanks to you.",
+"If your hands were as skilled as your tendency to creep, we might’ve won.",
+"We lost, but the real defeat is dealing with you.",
+"Losing’s bad enough, but you’ve taken it to a whole new level."
 ];
 
 //right knight - speak up lines
@@ -817,28 +862,50 @@ const rightKnightFriendAfterVictory = [
 "Victory shared! What grand triumph, dear friend!",
 "With your courage and my steadfast support, we prevailed!",
 "A bond of valor and victory! Truly a tale worth singing!",
-"The path to glory is brighter with you beside me."
+"The path to glory is brighter with you beside me.",
+"Together, we’ve earned this glory! A fitting reward for our valor.",
+"Victory is sweeter with a companion like you to share it with.",
+"We’ve carved our names into history today, side by side.",
+"A triumph such as this is not mine alone — it belongs to us both!",
+"Our strength in unity is the reason we stand victorious.",
+"Today, we’ve proven that with friendship, we can achieve anything!"
 ];
 
 const rightKnightFriendAfterTie = [
 "Evenly matched, yet ever noble companions.",
 "A draw, but our friendship stands resolute.",
 "We hold firm, side by side, no matter the outcome.",
-"The outcome matters less than the honor we upheld together."
+"The outcome matters less than the honor we upheld together.",
+"A draw, but our bond remains unshaken by the result.",
+"We faced a stalemate, yet I have no doubt we would prevail again.",
+"Side by side, we stood firm. A tie, but our friendship is the true victory.",
+"The battle may be over, but our brotherhood remains as strong as ever.",
+"A tie today, but tomorrow we will face whatever comes, together.",
+"No victor, no vanquished. Only true comrades in arms."
 ];
 
 const rightKnightFriendAfterDefeat = [
 "Defeat is lighter when shared with a true friend.",
 "Our resolve faltered, but our bond stands strong.",
 "No victory today, but I am proud to stand by your side.",
-"Even in loss, your steadfastness heartens me."
+"Even in loss, your steadfastness heartens me.",
+"Though the battle was lost, our friendship remains unbroken.",
+"Together in defeat, as we were in victory. We shall rise again.",
+"Today’s defeat is but a small setback in our journey.",
+"We may have lost the battle, but our honor remains intact.",
+"Though we fell, we did so with courage and honor at our side.",
+"A loss, yes, but we will face tomorrow’s challenges together, stronger than before."
 ];
 
 const rightKnightFoeAfterVictory = [
 "Victory? Preposterous! I must have been too merciful.",
 "You’ve bested the foe... perhaps despite my noble interference.",
 "Victory may be yours, but my honor remains untarnished.",
-"Fate may favor you, but I shan't."
+"Fate may favor you, but I shan't.",
+"You’ve won, but it was a hollow victory — no honor in it.",
+"Victory by luck, not skill. Still, I remain the true knight.",
+"A victory, yes, but one lacking in dignity.",
+"I stand undaunted, even as you claim your ill-gotten victory."
 ];
 
 const rightKnightFoeAfterTie = [
@@ -846,35 +913,62 @@ const rightKnightFoeAfterTie = [
 "Neither victory nor defeat. Maddening.",
 "Perhaps I showed too much restraint this time.",
 "A stalemate. How unbecoming.",
-"A stalemate — but I remain unyielding to your antics."
+"A stalemate — but I remain unyielding to your antics.",
+"This draw does not satisfy me. You’ve not earned my respect.",
+"I cannot abide by this result. There was no honor in it.",
+"A tie, but no true victory was achieved today.",
+"A battle with no winner. How unsatisfactory."
 ];
 
 const rightKnightFoeAfterDefeat = [
 "Ah, justice at last! Even fate agrees you required humbling.",
 "How poetic that your hubris met its well-deserved end.",
 "Your loss is a victory for honor — and for my peace of mind.",
-"A fitting conclusion. Perhaps this loss will temper your impudence."
+"A fitting conclusion. Perhaps this loss will temper your impudence.",
+"Today, you face the consequences of your arrogance. Enjoy the lesson.",
+"Defeat is a bitter pill, but one that teaches a valuable lesson.",
+"May this loss humble you, for your pride was your downfall.",
+"Your defeat was inevitable, for honor always prevails in the end.",
+"I hope this defeat has taught you what your pride could not.",
 ];
 
 const rightKnightCreepAfterVictory = [
 "A hollow victory, sullied by disgrace.",
 "We prevailed, but your conduct stains our triumph.",
 "Victory belongs to the virtuous, not the vulgar.",
-"I shall pray for redemption after this."
+"I shall pray for redemption after this.",
+"A win, yes, but at what cost? Your actions dishonor us both.",
+"Victory is not sweet when it is tainted by such shameful behavior.",
+"We may have won, but this victory is far from honorable.",
+"Fate favored us, but I shall carry the weight of your disgrace.",
+"A pyrrhic victory, for we both know the true cost of this win.",
+"Victory, but I will bear no pride in this if this is how it was earned."
 ];
 
 const rightKnightCreepAfterTie = [
 "A fitting draw, given your dishonorable actions.",
 "No winner, no honor, only shame remains.",
 "A stalemate, though your impropriety remains unmatched.",
-"This draw leaves me questioning your very upbringing."  
+"This draw leaves me questioning your very upbringing.",
+"A tie, but only one of us truly has honor.",
+"Neither victory nor defeat, yet still your actions dishonor this battle.",
+"A stalemate, yet your conduct remains revolting.",
+"This outcome means little when weighed against your disgrace.",
+"There is no victory in this, only the stain of your behavior.",
+"A draw, but your actions ensure no honor in it."  
 ];
 
 const rightKnightCreepAfterDefeat = [
 "Defeat was inevitable with such indecorous behavior.",
 "We fell, undone by scandal and impropriety.",
 "No wonder fate turned against us.",
-"Dishonor and defeat—tragically fitting."   
+"Dishonor and defeat — tragically fitting.",
+"Your behavior cost us dearly. I shall never forget it.",
+"Our fall was certain with your disgraceful actions at the forefront.",
+"The defeat was inevitable, given your disgraceful conduct.",
+"I could scarcely claim victory, but even defeat is better than this.",
+"This loss is as much yours as it is mine, due to your actions.",
+"We lost, and your indecency was the cause of it."   
 ];
 
 
@@ -1213,7 +1307,6 @@ actionButton.addEventListener("click", () => {
     gameState.playerLost = 0;
     gameState.matchesPlayed = 0;
     gameState.tournamentOutcome = null;
-    gameState.knightsClicked = false;
 
     tieCounterScore.textContent = gameState.tieCount;
     playerCounterScore.textContent = gameState.playerWon;
@@ -1288,29 +1381,43 @@ const knightSpeakUpLines = {
 
 function squire (placement, part) {
     const knightBubble = placement === "right" ? rightKnightBubble : leftKnightBubble;
-    gameState.knightsClicked = true;
 
-    if (rightCombination.length >= 5 || leftCombination.length >= 5) {
+   
         
         const combinations = {
             right: rightCombination,
             left: leftCombination
         }
 
-        const ifTouchy = combinations[placement].filter(item => item === 'groin').length;
+        const ifTouchy = {
+            left: 0,
+            right: 0
+        }
 
+        ifTouchy[placement] = combinations[placement].filter(item => item === 'groin').length
+
+        if (combinations[placement].length >= 5) {
     switch (true) {
-        case (ifTouchy >= 5 ):
+        case (ifTouchy[placement] >= 5 && tournamentActive === false):
             spokenLine = randomize(knightSpeakUpLines[placement]["creep"]["unlock"]);
             break;
-        case (ifTouchy >= 2):
+        case (ifTouchy[placement] >= 2 && tournamentActive === false):
             spokenLine = randomize(knightSpeakUpLines[placement]["touchy"]["unlock"]);
             break;
-        default:
+        case (ifTouchy[placement] < 2 && tournamentActive === false):
             spokenLine = randomize(knightSpeakUpLines[placement]["polite"]["unlock"]);
+            break;
+        case (ifTouchy[placement] >= 5 && tournamentActive === true):
+            spokenLine = randomize(knightSpeakUpLines[placement]["creep"][`after${gameState.tournamentOutcome}`]);
+            break;
+        case (ifTouchy[placement] >= 2 && tournamentActive === true):
+            spokenLine = randomize(knightSpeakUpLines[placement]["touchy"][`after${gameState.tournamentOutcome}`]);
+            break;
+        case (ifTouchy[placement] < 2 && tournamentActive === true):
+            spokenLine = randomize(knightSpeakUpLines[placement]["polite"][`after${gameState.tournamentOutcome}`]);
+            break;
+
     }
-        
-    knightBubble.textContent = spokenLine;
 
     } else {
     
@@ -1319,9 +1426,9 @@ function squire (placement, part) {
     : tournamentActive ? `after${gameState.tournamentOutcome}` : "during";
 
     spokenLine = randomize(knightLines[placement][time][part]);
-    knightBubble.textContent = spokenLine;
     }
-    
+        knightBubble.textContent = spokenLine;
+
         clearUpTimeouts();
         timeouts.push(setTimeout(function() {
             knightBubble.textContent = "";
