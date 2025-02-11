@@ -1217,7 +1217,7 @@ function tournamentFinal() {
     actionButton.hidden = false;
     tournamentActive = true;
     textSelector.remove();
-    tournamentsPlayed++;
+    gameState.tournamentsPlayed++;
     
     chosenMove.forEach((button) => {
         button.classList.add('disabled'); // Add a 'disabled' class to prevent interaction
@@ -1329,6 +1329,18 @@ const leftKnightBubble = document.querySelector(".left-knight-bubble");
 let rightCombination = [];
 let leftCombination = [];
 
+const knightTimeout = {
+    left: null,
+    right: null
+  };
+  
+  function clearUpKnightTimeout(placement) {
+    if (knightTimeout[placement]) {
+      clearTimeout(knightTimeout[placement]);
+      knightTimeout[placement] = null;
+    }
+  }
+
 const knightSpeakUpLines = {
     left: {
         creep: {
@@ -1382,7 +1394,7 @@ const knightSpeakUpLines = {
 function squire (placement, part) {
     const knightBubble = placement === "right" ? rightKnightBubble : leftKnightBubble;
 
-   
+
         
         const combinations = {
             right: rightCombination,
@@ -1394,9 +1406,12 @@ function squire (placement, part) {
             right: 0
         }
 
-        ifTouchy[placement] = combinations[placement].filter(item => item === 'groin').length
+        ifTouchy[placement] = combinations[placement].filter(item => item === 'groin').length;
 
         if (combinations[placement].length >= 5) {
+            console.log(gameState.tournamentOutcome);
+            console.log(tournamentActive);
+
     switch (true) {
         case (ifTouchy[placement] >= 5 && tournamentActive === false):
             spokenLine = randomize(knightSpeakUpLines[placement]["creep"]["unlock"]);
@@ -1429,10 +1444,10 @@ function squire (placement, part) {
     }
         knightBubble.textContent = spokenLine;
 
-        clearUpTimeouts();
-        timeouts.push(setTimeout(function() {
+        clearUpKnightTimeout(placement);
+        knightTimeout[placement] = setTimeout(function () {
             knightBubble.textContent = "";
-        }, 4000))
+          }, 4000);
     }
 
 
