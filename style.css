@@ -1,13 +1,13 @@
 @font-face {
     font-family: "Medieval-Detail";
-    src: url('/font/Jacquard_24/Jacquard24-Regular.ttf') format("truetype");
+    src: url('../font/Jacquard_24/Jacquard24-Regular.ttf') format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Medieval-Readable";
-    src: url('/font/Cormorant_Unicase/CormorantUnicase-Regular.ttf') format("truetype");
+    src: url('../font/Cormorant_Unicase/CormorantUnicase-Regular.ttf') format("truetype");
     font-style: normal;
     font-weight: normal;
 }
